@@ -14,11 +14,12 @@ namespace MTCG_Server.CardTypes
             _name = name;
             if (name.Substring(0, 5) == "Water")
                 _elementID = (int)Server.ElementID.Water;
-            else if (name.Substring(0, 5) == "Fire")
+            else if (name.Substring(0, 4) == "Fire")
                 _elementID = (int)Server.ElementID.Fire;
             else
                 _elementID = (int)Server.ElementID.Normal;
             _dmg = dmg;
+            _type = "Spell";
             //Console.WriteLine("Spell is created");
         }
         ~Spell() 

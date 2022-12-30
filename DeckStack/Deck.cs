@@ -24,16 +24,16 @@ namespace MTCG_Server.DeckStack
             switch (deckType)
             {
                 case 1:
-                    card1 = new Monster(222, "Fire Dragee", 50);
-                    card2 = new Spell(245, "Water Swoosh", 214);
-                    card3 = new Spell(250, "Ironic Hail", 123);
-                    card4 = new Spell(200, "Fire Tatertot", 0);
+                    card1 = new Monster(222, "FireDragee", 75);
+                    card2 = new Spell(245, "WaterSwoosh", 80);
+                    card3 = new Spell(250, "IronicHail", 50);
+                    card4 = new Spell(200, "FireTatertot", 69);
                 break;
                 case 2:
-                    card1 = new Monster(157, "Fire Dragonlord", 111);
-                    card2 = new Spell(111, "Water Spark", 179);
-                    card3 = new Monster(123, "Magnum Donger", 146);
-                    card4 = new Spell(100, "Water Greata", 1000);
+                    card1 = new Monster(157, "FireDragonlord", 100);
+                    card2 = new Spell(111, "WaterSpark", 60);
+                    card3 = new Monster(123, "MagnumDonger", 50);
+                    card4 = new Spell(100, "WaterGreata", 96);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

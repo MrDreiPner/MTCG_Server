@@ -11,17 +11,19 @@ namespace MTCG_Server.BattleClasses
     internal class BattleLobby
     {
         private static Random rand = new Random();
+        private User player1;
+        private User player2;
         private string? player1Name;
         private string? player2Name;
-        private Card? battleCardP1;
-        private Card? battleCardP2;
         private Deck? player1Deck;
         private Deck? player2Deck;
         private string? _battleLog;
 
         public string BattleLog { get { return _battleLog; } }
-        public BattleLobby(User player1, User player2)
+        public BattleLobby(ref User player1, ref User player2)
         {
+            this.player1 = player1;
+            this.player2 = player2;
             player1Name = player1.Username;
             player2Name = player2.Username;
             player1Deck = player1.Deck;
@@ -29,7 +31,6 @@ namespace MTCG_Server.BattleClasses
             player1Deck.PrintDeck();
             player2Deck.PrintDeck();
             _battleLog = "";
-
         }
 
         public int StartCombat()
@@ -40,14 +41,14 @@ namespace MTCG_Server.BattleClasses
             {
                 result = 0;
                 roundCounter++;
-                if ((player1Deck.Size == 0 || player2Deck.Size == 0) || roundCounter == 100)
+                if ((player1Deck.Size == 0 || player2Deck.Size == 0) || roundCounter > 100)
                 {
                     break;
                 }
                 _battleLog += "!!============ TURN " + roundCounter + " STARTED ============!!\n";
-                battleCardP1 = DrawCard(ref player1Deck);
+                Card battleCardP1 = DrawCard(player1Deck);
                 Console.WriteLine("Randomly drawn card is: "+ battleCardP1.Name);
-                battleCardP2 = DrawCard(ref player2Deck);
+                Card battleCardP2 = DrawCard(player2Deck);
                 Console.WriteLine("Randomly drawn card is: " + battleCardP2.Name);
                 BattleLogic newRound = new BattleLogic(ref battleCardP1, ref battleCardP2, player1Name, player2Name);
                 result = newRound.Fight(ref _battleLog, roundCounter);
@@ -90,10 +91,40 @@ namespace MTCG_Server.BattleClasses
                 newRound = null;
             }
             Console.WriteLine(_battleLog);
-            CleanUp(player1Deck, player2Deck);
+            int winner;
+            if ((player1Deck.Size > player2Deck.Size) && roundCounter <= 100)
+                winner = 1;
+            else if ((player1Deck.Size < player2Deck.Size) && roundCounter <= 100)
+                winner = 2;
+            else
+                winner = 3;
+
+            CaclulateNewELO(winner);
+            CleanUp();
             return 0;
         }
-        private Card DrawCard(ref Deck Deck)
+        private void CaclulateNewELO(int winner)
+        {
+            double diff = Math.Abs(player1.Elo - player2.Elo)/100;
+            if (diff < 0.5)
+                diff = 0.5;
+            else if (diff > 5 )
+                diff = 5;
+            double points = 15 * diff;
+            Console.WriteLine(points);
+            if(winner == 1)
+            {
+                player1.Elo = player1.Elo + (int)points;
+                player2.Elo = player2.Elo - (int)points;
+            }
+            else if(winner == 2)
+            {
+                player2.Elo = player2.Elo + (int)points;
+                player1.Elo = player1.Elo - (int)points;
+            }
+        }
+
+        private Card DrawCard(Deck Deck)
         {
             int max = Deck.Size;
             int pick = rand.Next(1, max);
@@ -113,45 +144,34 @@ namespace MTCG_Server.BattleClasses
             return null;
         }
 
-        private void CleanUp(Deck player1Deck, Deck player2Deck)
+        private void CleanUp()
         {
-            Card? tmpCard = null;
             while (player1Deck.Size != 4 && player2Deck.Size != 4)
             {
-                int counter = 0;
-                bool foundOwner = false;
-                foreach (Card card in player1Deck.DeckCards)
+                SwapCards(player1Deck, player2Deck);
+                SwapCards(player2Deck, player1Deck);
+            }
+        }
+
+        private void SwapCards(Deck Deck1, Deck Deck2)
+        {
+            Card? tmpCard = null;
+            int counter = 0;
+            bool foundOwner = false;
+            foreach (Card card in Deck1.DeckCards)
+            {
+                counter++;
+                if (card.OwnerID != Deck1.OwnerID)
                 {
-                    counter++;
-                    if(card.OwnerID != player1Deck.OwnerID)
-                    {
-                        tmpCard = card;
-                        foundOwner = true;
-                        break;
-                    }
+                    tmpCard = card;
+                    foundOwner = true;
+                    break;
                 }
-                if (foundOwner)
-                {
-                    player2Deck.AddCard(tmpCard);
-                    player1Deck.RemoveCard(counter);
-                }
-                counter = 0;
-                foundOwner = false;
-                foreach (Card card in player2Deck.DeckCards)
-                {
-                    counter++;
-                    if (card.OwnerID != player2Deck.OwnerID && card.OwnerID == player1Deck.OwnerID)
-                    {
-                        tmpCard = card;
-                        foundOwner = true;
-                        break;
-                    }
-                }
-                if (foundOwner)
-                {
-                    player1Deck.AddCard(tmpCard);
-                    player2Deck.RemoveCard(counter);
-                }
+            }
+            if (foundOwner)
+            {
+                Deck2.AddCard(tmpCard);
+                Deck1.RemoveCard(counter);
             }
         }
     }

@@ -19,6 +19,7 @@ namespace MTCG_Server.CardTypes
             else
                 _elementID = (int)Server.ElementID.Normal;
             _dmg = dmg;
+            _type = "Monster";
 
             //Console.WriteLine("Monster is created");
         }

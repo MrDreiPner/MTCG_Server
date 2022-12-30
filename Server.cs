@@ -24,14 +24,15 @@ namespace MTCG_Server
 
         public void runServer()
         {
-            User player1 = new User(20,"Maruice","12345", 423, 1);
-            User player2 = new User(53, "Damacool", "dada", 577, 2);
+            User player1 = new User(20,"Maruice","12345", 500, 1);
+            User player2 = new User(53, "Damacool", "dada", 1000, 2);
             buildLobby(ref player1, ref player2);
+            Console.WriteLine("New ELO:\n"+player1.Username+": "+player1.Elo+"\n"+player2.Username+": "+player2.Elo);
         }
 
         public void buildLobby(ref User player1, ref User player2)
         {
-            BattleLobby newLobby = new BattleLobby(player1, player2);
+            BattleLobby newLobby = new BattleLobby(ref player1, ref player2);
             newLobby.StartCombat();
             player1.Deck.PrintDeck();
             player2.Deck.PrintDeck();

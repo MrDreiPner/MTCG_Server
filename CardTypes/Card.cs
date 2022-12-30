@@ -15,6 +15,7 @@ namespace MTCG_Server.CardTypes
         protected bool _inDeck;
         protected bool _inTrade;
         protected int _ownerID;
+        protected string _type;
 
 
         public int GuID{ get { return _guID; } }
@@ -32,6 +33,11 @@ namespace MTCG_Server.CardTypes
         public int OwnerID{
             get { return _ownerID; }
             set { _ownerID = value; }
+        }
+
+        public string Type{
+            get { return _type; }
+            set { _type = value; }
         }
 
         public Card()
