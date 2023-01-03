@@ -24,7 +24,7 @@ namespace MTCG_Server
 
         public void runServer()
         {
-            User player1 = new User(20,"Maruice","12345", 500, 1);
+            User player1 = new User(20,"Maruice","12345", 850, 1);
             User player2 = new User(53, "Damacool", "dada", 1000, 2);
             buildLobby(ref player1, ref player2);
             Console.WriteLine("New ELO:\n"+player1.Username+": "+player1.Elo+"\n"+player2.Username+": "+player2.Elo);
