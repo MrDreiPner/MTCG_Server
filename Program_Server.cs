@@ -12,6 +12,7 @@ namespace MTCG_Server
         {
             Console.WriteLine("Program_Server runs!");
             Server server = new Server();
+            server.RunServer();
         }
     }
 }

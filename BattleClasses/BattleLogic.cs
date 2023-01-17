@@ -21,24 +21,23 @@ namespace MTCG_Server.BattleClasses
             cardPlayer2 = player2;
         }
 
-        public int Fight(ref string battleLog, int turnCounter)
+        public int Fight(ref string battleLog, int roundCounter)
         {
-            Console.WriteLine("------ Turn " + turnCounter + " start ------");
             if ((cardPlayer1 is Monster && cardPlayer2 is Monster) || (cardPlayer1.ElementID == cardPlayer2.ElementID))
             {
                 if (cardPlayer1.Dmg > cardPlayer2.Dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by "+player1Name+ "! " + cardPlayer1.Type +" "+cardPlayer1.Name + " dealt "+ cardPlayer1.Dmg +" damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + cardPlayer2.Dmg+ " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by "+player1Name+ "! " + cardPlayer1.Type +" "+cardPlayer1.Name + " dealt "+ cardPlayer1.Dmg +" damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + cardPlayer2.Dmg+ " damage!\n";
                     return 1;
                 }
                 else if (cardPlayer1.Dmg < cardPlayer2.Dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + cardPlayer2.Dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + cardPlayer1.Dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + cardPlayer2.Dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + cardPlayer1.Dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + turnCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + " both dealt " + cardPlayer1.Dmg+" damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + " both dealt " + cardPlayer1.Dmg+" damage!\n";
                     return 3;
                 }
             }
@@ -50,17 +49,17 @@ namespace MTCG_Server.BattleClasses
                 int CP2dmg = cardPlayer2.Dmg / 2;
                 if (CP1dmg > CP2dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
                     return 1;
                 }
                 else if (CP1dmg < CP2dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + turnCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
                     return 3;
                 }
             }
@@ -72,17 +71,17 @@ namespace MTCG_Server.BattleClasses
                 int CP1dmg = cardPlayer1.Dmg / 2;
                 if (CP1dmg > CP2dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
                     return 1;
                 }
                 else if (CP1dmg < CP2dmg)
                 {
-                    battleLog += "Turn " + turnCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + turnCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
                     return 3;
                 }
             }

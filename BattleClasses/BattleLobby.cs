@@ -19,20 +19,33 @@ namespace MTCG_Server.BattleClasses
         private Deck? player2Deck;
         private string? _battleLog;
 
+        private int _playerCount;
+
+        public int PlayerCount { get{ return _playerCount;} set { _playerCount = value; } }
         public string BattleLog { get { return _battleLog; } }
-        public BattleLobby(ref User player1, ref User player2)
+        public BattleLobby()
         {
-            this.player1 = player1;
-            this.player2 = player2;
-            player1Name = player1.Username;
-            player2Name = player2.Username;
-            player1Deck = player1.Deck;
-            player2Deck = player2.Deck;
-            player1Deck.PrintDeck();
-            player2Deck.PrintDeck();
+            _playerCount = 0;
             _battleLog = "";
         }
 
+        public void AddPlayer1(object player1)
+        {
+            this.player1 = (User) player1;
+            player1Name = this.player1.Username;
+            player1Deck = this.player1.Deck;
+            _playerCount++;
+            player1Deck.PrintDeck();
+        }
+        public void AddPlayer2(object player2)
+        {
+            this.player2 = (User) player2;
+            player2Name = this.player2.Username;
+            player2Deck = this.player2.Deck;
+            player2Deck.PrintDeck();
+            _playerCount++;
+            StartCombat();
+        }
         public int StartCombat()
         {
             int result;
@@ -46,10 +59,11 @@ namespace MTCG_Server.BattleClasses
                     break;
                 }
                 _battleLog += "!!============ TURN " + roundCounter + " STARTED ============!!\n";
+                Console.WriteLine("------ Turn " + roundCounter + " start ------");
                 Card battleCardP1 = DrawCard(player1Deck);
-                Console.WriteLine("Randomly drawn card is: "+ battleCardP1.Name);
+                Console.WriteLine(player1Name+" randomly drew card : "+ battleCardP1.Name);
                 Card battleCardP2 = DrawCard(player2Deck);
-                Console.WriteLine("Randomly drawn card is: " + battleCardP2.Name);
+                Console.WriteLine(player2Name + " randomly drew card : " + battleCardP2.Name);
                 BattleLogic newRound = new BattleLogic(ref battleCardP1, ref battleCardP2, player1Name, player2Name);
                 result = newRound.Fight(ref _battleLog, roundCounter);
                 if (result == 1)
@@ -65,8 +79,8 @@ namespace MTCG_Server.BattleClasses
                         }
                     }
                     player2Deck.RemoveCard(counter);
-                    player1Deck.PrintDeck();
-                    player2Deck.PrintDeck();
+                    //player1Deck.PrintDeck();
+                    //player2Deck.PrintDeck();
                 }
                 else if(result == 2)
                 {
@@ -81,8 +95,8 @@ namespace MTCG_Server.BattleClasses
                         }
                     }
                     player1Deck.RemoveCard(counter);
-                    player1Deck.PrintDeck();
-                    player2Deck.PrintDeck();
+                    //player1Deck.PrintDeck();
+                    //player2Deck.PrintDeck();
                 }
                 else if(result == 0)
                 {
@@ -137,6 +151,7 @@ namespace MTCG_Server.BattleClasses
                     player1.Elo = player1.Elo - (int)points;
                 }
             }
+            Console.WriteLine("New ELO:\n" + player1.Username + ": " + player1.Elo + "\n" + player2.Username + ": " + player2.Elo+"\n!The Battle is over!");
         }
 
         private Card DrawCard(Deck Deck)

@@ -10,6 +10,12 @@ namespace MTCG_Server
 {
     internal class Server
     {
+        protected List<BattleLobby> battleLobbies;
+        protected List<Thread> sessionthreads;
+        private bool abortRequest;
+
+        public List<BattleLobby> BattleLobbies { get { return battleLobbies; } set { battleLobbies = value; } }
+        public List<Thread> SessionThreads { get { return sessionthreads; } set { sessionthreads = value; } }
         public enum ElementID
         {
             Normal = 1,
@@ -18,25 +24,40 @@ namespace MTCG_Server
         }
         public Server()
         {
+            abortRequest = false;
+            battleLobbies = new List<BattleLobby>();
+            sessionthreads = new List<Thread>();
             Console.WriteLine("Server is constructed");
-            runServer();
         }
 
-        public void runServer()
+        public void RunServer()
         {
-            User player1 = new User(20,"Maruice","12345", 850, 1);
-            User player2 = new User(53, "Damacool", "dada", 1000, 2);
-            buildLobby(ref player1, ref player2);
-            Console.WriteLine("New ELO:\n"+player1.Username+": "+player1.Elo+"\n"+player2.Username+": "+player2.Elo);
-        }
+            /*while (!abortRequest)
+            {
 
-        public void buildLobby(ref User player1, ref User player2)
-        {
-            BattleLobby newLobby = new BattleLobby(ref player1, ref player2);
-            newLobby.StartCombat();
-            player1.Deck.PrintDeck();
-            player2.Deck.PrintDeck();
+            }*/
+            //Thread newThread = new Thread(new ParameterizedThreadStart(lobby.AddPlayer));
+            //newThread.Start(player2);
+            //SessionThreads.Add(newThread);
+            //Thread newThread = new Thread(new ParameterizedThreadStart(lobby.AddPlayer));
+            //newThread.Start(ref player2);
+            User player1 = new User(20, "Maruice", "12345", 1000, 1);
+            User player2 = new User(53, "Damacool", "dada", 800, 2);
+            Session newSessionPlayer1 = new Session(this.battleLobbies, player1);
+            Session newSessionPlayer2 = new Session(this.battleLobbies, player2);
+            Thread newThread1 = new Thread(new ThreadStart(newSessionPlayer1.RunSession));
+            newThread1.Start();
+            SessionThreads.Add(newThread1);
+            Thread.Sleep(1000);
+            Thread newThread2 = new Thread(new ThreadStart(newSessionPlayer2.RunSession));
+            newThread2.Start();
+            SessionThreads.Add(newThread2);
+            foreach (Thread thread in sessionthreads)
+            {
+                thread.Join();
+            }//*/
         }
+        
 
         ~Server()
         {
