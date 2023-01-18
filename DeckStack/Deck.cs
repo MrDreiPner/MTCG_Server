@@ -40,6 +40,7 @@ namespace MTCG_Server.DeckStack
             }
 
             size = 0;
+            _ownerID = ownerID;
             DeckCards = new List<Card>();
             AddCard(card1);
             AddCard(card2);
@@ -47,27 +48,25 @@ namespace MTCG_Server.DeckStack
             AddCard(card4);
             foreach(Card card in DeckCards)
             {
-                card.OwnerID = ownerID;
+                card.OwnerID = _ownerID;
             }
             //RemoveCard(2);
-            _ownerID = ownerID;
             //PrintDeck();
             Console.WriteLine("Size of Deck: " + size + "\nOwnerID of this Deck: " + _ownerID);
         }
-
         public void AddCard(Card newCard)
         {
             newCard.InDeck = true;
             DeckCards.Add(newCard);
             size++;
-            Console.WriteLine("Added: " + newCard.Name + " - ID: " + newCard.GuID+" to OwnerID "+_ownerID);
+            //Console.WriteLine("Added: " + newCard.Name + " - ID: " + newCard.GuID+" to OwnerID "+_ownerID);
         }
         public void RemoveCard(int spot) 
         {
             try
             {
                 spot--;
-                Console.WriteLine(DeckCards.ElementAt(spot).Name + " has been removed from OwnerID "+_ownerID);
+                //Console.WriteLine(DeckCards.ElementAt(spot).Name + " has been removed from OwnerID "+_ownerID);
                 DeckCards.RemoveAt(spot);
                 size--;
             }

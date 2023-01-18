@@ -19,14 +19,21 @@ namespace MTCG_Server.BattleClasses
         private Deck? player2Deck;
         private string? _battleLog;
 
+        private bool lobbyDone;
+        private int _checkLobbyDone;
+
         private int _playerCount;
 
+        public bool LobbyDone { get { return lobbyDone; } }
         public int PlayerCount { get{ return _playerCount;} set { _playerCount = value; } }
         public string BattleLog { get { return _battleLog; } }
+        public int CheckLobbyDone { get { return _checkLobbyDone; } set { _checkLobbyDone = value; } }
         public BattleLobby()
         {
             _playerCount = 0;
             _battleLog = "";
+            lobbyDone= false;
+            _checkLobbyDone = 0;
         }
 
         public void AddPlayer1(object player1)
@@ -35,19 +42,19 @@ namespace MTCG_Server.BattleClasses
             player1Name = this.player1.Username;
             player1Deck = this.player1.Deck;
             _playerCount++;
-            player1Deck.PrintDeck();
+            //player1Deck.PrintDeck();
         }
         public void AddPlayer2(object player2)
         {
+            _playerCount++;
             this.player2 = (User) player2;
             player2Name = this.player2.Username;
             player2Deck = this.player2.Deck;
-            player2Deck.PrintDeck();
-            _playerCount++;
-            StartCombat();
+            //player2Deck.PrintDeck();
         }
-        public int StartCombat()
+        public void StartCombat()
         {
+            //Thread.Sleep(5000);
             int result;
             int roundCounter = 0;
             while (true)
@@ -59,11 +66,11 @@ namespace MTCG_Server.BattleClasses
                     break;
                 }
                 _battleLog += "!!============ TURN " + roundCounter + " STARTED ============!!\n";
-                Console.WriteLine("------ Turn " + roundCounter + " start ------");
+                //Console.WriteLine("------ Turn " + roundCounter + " start ------");
                 Card battleCardP1 = DrawCard(player1Deck);
-                Console.WriteLine(player1Name+" randomly drew card : "+ battleCardP1.Name);
+                //Console.WriteLine(player1Name+" randomly drew card : "+ battleCardP1.Name);
                 Card battleCardP2 = DrawCard(player2Deck);
-                Console.WriteLine(player2Name + " randomly drew card : " + battleCardP2.Name);
+                //Console.WriteLine(player2Name + " randomly drew card : " + battleCardP2.Name);
                 BattleLogic newRound = new BattleLogic(ref battleCardP1, ref battleCardP2, player1Name, player2Name);
                 result = newRound.Fight(ref _battleLog, roundCounter);
                 if (result == 1)
@@ -104,7 +111,7 @@ namespace MTCG_Server.BattleClasses
                 }
                 newRound = null;
             }
-            Console.WriteLine(_battleLog);
+            //Console.WriteLine(_battleLog);
             int winner;
             if ((player1Deck.Size > player2Deck.Size) && roundCounter <= 100)
                 winner = 1;
@@ -115,7 +122,7 @@ namespace MTCG_Server.BattleClasses
 
             CaclulateNewELO(winner);
             CleanUp();
-            return 0;
+            lobbyDone = true;
         }
         private void CaclulateNewELO(int winner)
         {

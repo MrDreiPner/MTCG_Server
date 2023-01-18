@@ -22,16 +22,26 @@ namespace MTCG_Server
         private int _elo;
         private Deck? _deck;
         private Stack? _stack;
+        private int _coins;
 
-        public User(int uid, string username, string password, int elo, int deckType)
+        public User(int uid, string username, string password, int elo, int coins, int deckType)
         {
             _uid = uid;
             _username = username;
             _password = password;
             _elo = elo;
+            _coins = coins;
             _deck = new Deck(_uid, deckType);
         }
         ~User() { }
+    
+        public void CreateUser(string username, string password)
+        {
+            _username = username;
+            _password = password;
+            _coins = 20;
+
+        }
     }
 
 

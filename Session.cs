@@ -10,47 +10,73 @@ namespace MTCG_Server
 {
     internal class Session
     {
+        protected Trader trader;
         protected List<BattleLobby> battleLobbies;
         protected User myPlayer;
+        private bool busyWaiting;
 
+        public Trader Trader { get { return trader; } set { trader = value; } }
         public List<BattleLobby> BattleLobbies { get { return battleLobbies; } set { battleLobbies = value; } }
-        public Session(List<BattleLobby> battleLobbies, User myPlayer)
+        public Session(Trader trader, List<BattleLobby> battleLobbies, User myPlayer)
         {
+            this.trader = trader;
             this.battleLobbies = battleLobbies;
             this.myPlayer = myPlayer;
         }
+
+        ~Session() { } 
         public void RunSession()
         {
-            SendToBattleLobby(ref myPlayer);
+            SendToBattleLobby();
         }
 
-        public void SendToBattleLobby(ref User myPlayer)
+        public void SendToBattleLobby()
         {
-            int counter = 0;
+            bool foundLobby = false;
+            BattleLobby_Mutex.BattleMutex.WaitOne();
             foreach (BattleLobby lobby in BattleLobbies)
             {
                 if (lobby.PlayerCount == 1)
                 {
-                    Console.WriteLine("Found open Lobby!");
+                    Console.WriteLine(myPlayer.Username + " found open Lobby!");
                     lobby.AddPlayer2(myPlayer);
-                    counter++;
+                    BattleLobby_Mutex.BattleMutex.ReleaseMutex();
+                    lobby.StartCombat();
+                    busyWaiting = true;
+                    while (busyWaiting)
+                    {
+                        Console.WriteLine("Lobby state: " + lobby.LobbyDone);
+                        if (lobby.LobbyDone)
+                        {
+                            busyWaiting = false;
+                        }
+                    }
+                    //BattleLobbies.Remove(lobby);
+                    Console.WriteLine(myPlayer.Username + " done waiting!");
+                    foundLobby = true;
                     break;
                 }
-                if(counter == BattleLobbies.Count())
-                {
-                    Console.WriteLine("Created new Lobby");
-                    BattleLobby newLobby = new BattleLobby();
-                    newLobby.AddPlayer1(myPlayer);
-                    BattleLobbies.Add(newLobby);
-                }
-                counter++;
             }
-            if (counter == 0)
+            if (!foundLobby)
             {
-                Console.WriteLine("Created new Lobby");
+                Console.WriteLine(myPlayer.Username + " created a new Lobby");
                 BattleLobby newLobby = new BattleLobby();
-                newLobby.AddPlayer1(myPlayer);
+                newLobby.AddPlayer1 (myPlayer);
+                //BattleLobby_Mutex.BattleMutex.WaitOne();
                 BattleLobbies.Add(newLobby);
+                BattleLobby_Mutex.BattleMutex.ReleaseMutex();
+                Console.WriteLine(myPlayer.Username + " waiting in Lobby");
+                busyWaiting = true;
+                while (busyWaiting)
+                {
+                    Console.WriteLine("Lobby state: " + newLobby.LobbyDone);
+                    if (newLobby.LobbyDone)
+                    {
+                        busyWaiting = false;
+                    }
+                    //Thread.Sleep(1000);
+                }
+                Console.WriteLine(myPlayer.Username + " done waiting!");
             }
             //player1.Deck.PrintDeck();
             //player2.Deck.PrintDeck();

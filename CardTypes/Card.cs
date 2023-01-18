@@ -15,6 +15,7 @@ namespace MTCG_Server.CardTypes
         protected bool _inDeck;
         protected bool _inTrade;
         protected int _ownerID;
+        protected int _packID;
         protected string _type;
 
 
@@ -33,6 +34,11 @@ namespace MTCG_Server.CardTypes
         public int OwnerID{
             get { return _ownerID; }
             set { _ownerID = value; }
+        }
+
+        public int PackID { 
+            get { return _packID; }
+            set { _packID = value; }
         }
 
         public string Type{
