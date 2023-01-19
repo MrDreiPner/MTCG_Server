@@ -1,0 +1,12 @@
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\bin\Debug\net6.0\SWE1.MessageServer.Core.deps.json
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\bin\Debug\net6.0\SWE1.MessageServer.Core.dll
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\bin\Debug\net6.0\SWE1.MessageServer.Core.pdb
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.csproj.AssemblyReference.cache
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.AssemblyInfoInputs.cache
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.AssemblyInfo.cs
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.csproj.CoreCompileInputs.cache
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.dll
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\refint\SWE1.MessageServer.Core.dll
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\SWE1.MessageServer.Core.pdb
+C:\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\obj\Debug\net6.0\ref\SWE1.MessageServer.Core.dll
