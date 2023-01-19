@@ -9,7 +9,7 @@ namespace SWE1.MessageServer.Core.Server
     public class HttpServer : IServer
     {
         private bool _listening;
-
+ 
         private readonly TcpListener _listener;
         private readonly IRouter _router;
 
