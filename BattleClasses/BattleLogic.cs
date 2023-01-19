@@ -41,9 +41,9 @@ namespace MTCG_Server.BattleClasses
                     return 3;
                 }
             }
-            else if((cardPlayer1.ElementID == 1 && cardPlayer2.ElementID == 2)
-                    || (cardPlayer1.ElementID == 2 && cardPlayer2.ElementID == 3)
-                    || (cardPlayer1.ElementID == 3 && cardPlayer2.ElementID == 1))
+            else if((cardPlayer1.ElementID == Server.ElementID.Normal && cardPlayer2.ElementID == Server.ElementID.Water)
+                    || (cardPlayer1.ElementID == Server.ElementID.Water && cardPlayer2.ElementID == Server.ElementID.Fire)
+                    || (cardPlayer1.ElementID == Server.ElementID.Fire && cardPlayer2.ElementID == Server.ElementID.Normal))
             {
                 int CP1dmg = cardPlayer1.Dmg * 2;
                 int CP2dmg = cardPlayer2.Dmg / 2;
@@ -63,9 +63,9 @@ namespace MTCG_Server.BattleClasses
                     return 3;
                 }
             }
-            else if ((cardPlayer2.ElementID == 1 && cardPlayer1.ElementID == 2)
-                    || (cardPlayer2.ElementID == 2 && cardPlayer1.ElementID == 3)
-                    || (cardPlayer2.ElementID == 3 && cardPlayer1.ElementID == 1))
+            else if ((cardPlayer2.ElementID == Server.ElementID.Normal && cardPlayer1.ElementID == Server.ElementID.Water)
+                    || (cardPlayer2.ElementID == Server.ElementID.Water && cardPlayer1.ElementID == Server.ElementID.Fire)
+                    || (cardPlayer2.ElementID == Server.ElementID.Fire && cardPlayer1.ElementID == Server.ElementID.Normal))
             {
                 int CP2dmg = cardPlayer2.Dmg * 2;
                 int CP1dmg = cardPlayer1.Dmg / 2;

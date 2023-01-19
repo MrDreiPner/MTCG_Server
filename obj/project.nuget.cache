@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "V/iiRj1OxsDBXCm9r59Yq+1oode96BIloGGKlDz82ApvTZ4wLOEmKM1PpAJLxn0dAmsxJN1t/cBK3yDf8IXeVg==",
+  "dgSpecHash": "CY5w+R9xn1YF1amh5ZqkX7LRtvCF53dbHRhanzZrtX9gE14Kn76k/EmymYEpBqgQEybJW9Lr4Tr977ichWfgMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG_Server.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG_Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\porub\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

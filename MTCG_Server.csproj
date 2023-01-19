@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Npgsql" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Users\porub\OneDrive\Dokumente\swe1-message-server-l3-l4\SWE1.MessageServer\SWE1.MessageServer.Core\SWE1.MessageServer.Core.csproj" />
+  </ItemGroup>
+
 </Project>

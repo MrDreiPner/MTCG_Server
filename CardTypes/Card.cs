@@ -10,7 +10,7 @@ namespace MTCG_Server.CardTypes
     {
         protected int _guID;
         protected string? _name;
-        protected int _elementID;
+        protected Server.ElementID _elementID;
         protected int _dmg;
         protected bool _inDeck;
         protected bool _inTrade;
@@ -21,7 +21,7 @@ namespace MTCG_Server.CardTypes
 
         public int GuID{ get { return _guID; } }
         public string? Name { get { return _name; }}
-        public int ElementID{ get { return _elementID; } }
+        public Server.ElementID ElementID { get { return _elementID; } }
         public int Dmg { get { return _dmg; }}
         public bool InDeck { 
             get { return _inDeck; }

@@ -41,6 +41,7 @@ namespace MTCG_Server
                     Console.WriteLine(myPlayer.Username + " found open Lobby!");
                     lobby.AddPlayer2(myPlayer);
                     BattleLobby_Mutex.BattleMutex.ReleaseMutex();
+                    Thread.Sleep(1000);
                     lobby.StartCombat();
                     busyWaiting = true;
                     while (busyWaiting)
@@ -48,8 +49,10 @@ namespace MTCG_Server
                         Console.WriteLine("Lobby state: " + lobby.LobbyDone);
                         if (lobby.LobbyDone)
                         {
+                            //send response with lobby.Battlelog
                             busyWaiting = false;
                         }
+                        Thread.Sleep(1000);
                     }
                     //BattleLobbies.Remove(lobby);
                     Console.WriteLine(myPlayer.Username + " done waiting!");
@@ -72,9 +75,10 @@ namespace MTCG_Server
                     Console.WriteLine("Lobby state: " + newLobby.LobbyDone);
                     if (newLobby.LobbyDone)
                     {
+                        //send response with lobby.Battlelog
                         busyWaiting = false;
                     }
-                    //Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                 }
                 Console.WriteLine(myPlayer.Username + " done waiting!");
             }

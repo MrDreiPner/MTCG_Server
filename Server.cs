@@ -56,26 +56,6 @@ namespace MTCG_Server
                 newThread1.Start();
                 ThreadList.Add(newThread1);
             }
-            /*User player1 = new User(20, "Maruice", "12345", 1000, 20, 1);
-            User player2 = new User(53, "Damacool", "dada", 800, 10, 2);
-            Session newSessionPlayer1 = new Session(this.trader, this.battleLobbies, player1);
-            Session newSessionPlayer2 = new Session(this.trader, this.battleLobbies, player2);
-            Thread newThread1 = new Thread(new ThreadStart(newSessionPlayer1.RunSession));
-            newThread1.Start();
-            ThreadList.Add(newThread1);
-            Thread newThread2 = new Thread(new ThreadStart(newSessionPlayer2.RunSession));
-            newThread2.Start();
-            ThreadList.Add(newThread2);
-            User player3 = new User(78, "DooDoo", "12345", 500, 20, 1);
-            User player4 = new User(123, "Bandooo", "dada", 900, 10, 2);
-            Session newSessionPlayer3 = new Session(this.trader, this.battleLobbies, player3);
-            Session newSessionPlayer4 = new Session(this.trader, this.battleLobbies, player4);
-            Thread newThread3 = new Thread(new ThreadStart(newSessionPlayer3.RunSession));
-            newThread3.Start();
-            ThreadList.Add(newThread3);
-            Thread newThread4 = new Thread(new ThreadStart(newSessionPlayer4.RunSession));
-            newThread4.Start();
-            ThreadList.Add(newThread4);*/
             int count = 0;
             Thread.Sleep(1000);
             trader.AbortTrader();

@@ -32,7 +32,7 @@ namespace MTCG_Server.DeckStack
                 case 2:
                     card1 = new Monster(157, "FireDragonlord", 100);
                     card2 = new Spell(111, "WaterSpark", 60);
-                    card3 = new Monster(123, "MagnumDonger", 50);
+                    card3 = new Monster(123, "MetalShower", 50);
                     card4 = new Spell(100, "WaterGreata", 96);
                     break;
                 default:
