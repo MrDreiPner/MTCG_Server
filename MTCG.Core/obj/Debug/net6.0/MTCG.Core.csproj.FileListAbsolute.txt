@@ -1,0 +1,12 @@
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.deps.json
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.dll
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.pdb
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.csproj.AssemblyReference.cache
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.AssemblyInfoInputs.cache
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.AssemblyInfo.cs
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.csproj.CoreCompileInputs.cache
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.dll
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\refint\MTCG.Core.dll
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.pdb
+C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\ref\MTCG.Core.dll
