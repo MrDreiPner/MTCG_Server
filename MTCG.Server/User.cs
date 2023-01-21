@@ -42,6 +42,11 @@ namespace MTCG_Server
             _coins = 20;
 
         }
+
+        public void UpdateUser()
+        {
+
+        }
     }
 
 

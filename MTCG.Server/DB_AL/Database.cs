@@ -11,9 +11,11 @@ namespace SWE1.MessageServer.DAL
     {
         // see also https://www.postgresql.org/docs/current/ddl-constraints.html
         private const string CreateTablesCommand = @"
-CREATE TABLE IF NOT EXISTS users (uid serial PRIMARY KEY, username varchar, password varchar, coins numeric);
+CREATE TABLE IF NOT EXISTS users (uid serial PRIMARY KEY, username varchar, password varchar, bio varchar, image varchar, name varchar , coins numeric, elo numeric);
 CREATE TABLE IF NOT EXISTS cards (id serial PRIMARY KEY, cardname varchar, elementID elementIDenum, dmg numeric, inDeck boolean, inTrade boolean, ownerID numeric, packID numeric, type varchar);
 ";
+        /*CREATE TYPE elementIDenum AS ENUM ('Water', 'Fire', 'Normal');*/
+
 
         public IMessageDao MessageDao { get; private set; }
         public IUserDao UserDao { get; private set; }

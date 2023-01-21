@@ -11,6 +11,8 @@ namespace SWE1.MessageServer.BLL
     internal interface IUserManager
     {
         User LoginUser(Credentials credentials);
+
+        User UpdateUser(string authToken);
         void RegisterUser(Credentials credentials);
         User GetUserByAuthToken(string authToken);
     }

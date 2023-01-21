@@ -10,3 +10,15 @@ C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core
 C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\refint\MTCG.Core.dll
 C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.pdb
 C:\Users\Matus\Documents\GitHub\MTCG_Server\MTCG.Core\obj\Debug\net6.0\ref\MTCG.Core.dll
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.deps.json
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.dll
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\bin\Debug\net6.0\MTCG.Core.pdb
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.csproj.AssemblyReference.cache
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.AssemblyInfoInputs.cache
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.AssemblyInfo.cs
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.csproj.CoreCompileInputs.cache
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.dll
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\refint\MTCG.Core.dll
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\MTCG.Core.pdb
+C:\Dokument Folder\VS Projects\MTCG_Server\MTCG.Core\obj\Debug\net6.0\ref\MTCG.Core.dll

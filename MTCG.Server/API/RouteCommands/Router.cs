@@ -34,6 +34,7 @@ namespace SWE1.MessageServer.API.RouteCommands
             IRouteCommand? command = request switch
             {
                 { Method: HttpMethod.Post, ResourcePath: "/users" } => new RegisterCommand(_userManager, Deserialize<Credentials>(request.Payload)),
+                { Method: HttpMethod.Put, ResourcePath: "/users" } => new UpdateCommand(_userManager, Deserialize<Credentials>(request.Payload)),
                 { Method: HttpMethod.Post, ResourcePath: "/sessions"} => new LoginCommand(_userManager, Deserialize<Credentials>(request.Payload)),
 
                 { Method: HttpMethod.Post, ResourcePath: "/messages"} => new AddMessageCommand(_messageManager, identity(request), EnsureBody(request.Payload)),

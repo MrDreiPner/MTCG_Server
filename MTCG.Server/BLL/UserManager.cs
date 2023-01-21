@@ -17,6 +17,11 @@ namespace SWE1.MessageServer.BLL
             _userDao = userDao;
         }
 
+        public User UpdateUser(string authToken)
+        {
+            return _userDao.GetUserByAuthToken(authToken) ?? throw new UserNotFoundException();
+        }
+
         public User LoginUser(Credentials credentials)
         {
             return _userDao.GetUserByCredentials(credentials.Username, credentials.Password) ?? throw new UserNotFoundException();
