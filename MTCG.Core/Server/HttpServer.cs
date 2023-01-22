@@ -1,10 +1,10 @@
-﻿using SWE1.MessageServer.Core.Response;
-using SWE1.MessageServer.Core.Routing;
+﻿using SWE1.MTCG.Core.Response;
+using SWE1.MTCG.Core.Routing;
 using System.Net;
 using System.Net.Sockets;
-using HttpClient = SWE1.MessageServer.Core.Client.HttpClient;
+using HttpClient = SWE1.MTCG.Core.Client.HttpClient;
 
-namespace SWE1.MessageServer.Core.Server
+namespace SWE1.MTCG.Core.Server
 {
     public class HttpServer : IServer
     {
@@ -54,6 +54,7 @@ namespace SWE1.MessageServer.Core.Server
                         }
                         else
                         {
+                            Console.WriteLine("Here 2");
                             // could not find a matching command for the request
                             response = new Response.Response()
                             {
@@ -63,6 +64,7 @@ namespace SWE1.MessageServer.Core.Server
                     }
                     catch (RouteNotAuthenticatedException)
                     {
+                        Console.WriteLine("Identity returned is NULL");
                         response = new Response.Response()
                         {
                             StatusCode = Response.StatusCode.Unauthorized

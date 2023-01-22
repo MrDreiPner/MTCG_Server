@@ -8,16 +8,16 @@ namespace MTCG_Server.CardTypes
 {
     internal class Spell : Card
     {
-        public Spell(int guID, string name, int dmg)
+        public Spell(string guID, string name, int dmg)
         {
             _guID = guID;
             _name = name;
             if (name.Substring(0, 5) == "Water")
-                _elementID = Server.ElementID.Water;
+                _elementID = Server.ElementID.water;
             else if (name.Substring(0, 4) == "Fire")
-                _elementID = Server.ElementID.Fire;
+                _elementID = Server.ElementID.fire;
             else
-                _elementID = Server.ElementID.Normal;
+                _elementID = Server.ElementID.normal;
             _dmg = dmg;
             _type = "Spell";
             //Console.WriteLine("Spell is created");

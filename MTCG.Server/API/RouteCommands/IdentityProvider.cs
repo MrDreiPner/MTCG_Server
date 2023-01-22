@@ -1,8 +1,8 @@
-﻿using SWE1.MessageServer.BLL;
-using SWE1.MessageServer.Core.Request;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.BLL;
+using SWE1.MTCG.Core.Request;
+using SWE1.MTCG.Models;
 
-namespace SWE1.MessageServer.API.RouteCommands
+namespace SWE1.MTCG.API.RouteCommands
 {
     internal class IdentityProvider
     {
@@ -19,11 +19,13 @@ namespace SWE1.MessageServer.API.RouteCommands
 
             if (request.Header.TryGetValue("Authorization", out var authToken))
             {
-                const string prefix = "Basic ";
+                const string prefix = "Bearer ";
                 if (authToken.StartsWith(prefix))
                 {
+                    Console.WriteLine("Auth token is " + authToken.Substring(prefix.Length));
                     try
                     {
+
                         currentUser = _userManager.GetUserByAuthToken(authToken.Substring(prefix.Length));
                     }
                     catch { }

@@ -1,13 +1,13 @@
-﻿using SWE1.MessageServer.Core.Response;
-using SWE1.MessageServer.Core.Routing;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.Core.Response;
+using SWE1.MTCG.Core.Routing;
+using SWE1.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MessageServer.API.RouteCommands
+namespace SWE1.MTCG.API.RouteCommands
 {
     internal abstract class AuthenticatedRouteCommand : IRouteCommand
     {

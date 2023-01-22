@@ -1,4 +1,4 @@
-﻿namespace SWE1.MessageServer.Core.Server
+﻿namespace SWE1.MTCG.Core.Server
 {
     public interface IServer
     {

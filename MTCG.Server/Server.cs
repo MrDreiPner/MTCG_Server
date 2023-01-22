@@ -24,9 +24,9 @@ namespace MTCG_Server
         public Trader trader;
         public enum ElementID
         {
-            Normal = 1,
-            Water = 2,
-            Fire = 3
+            normal = 1,
+            water = 2,
+            fire = 3
         }
         public Server()
         {
@@ -50,7 +50,7 @@ namespace MTCG_Server
             //Start mock battle
             for(int i = 0; i < 100; i++)
             {
-                User player1 = new User(20 + i, "Maruice"+i, "12345", 1000 + i * 10, 20 - 1, (i % 2) + 1);
+                BattleUser player1 = new BattleUser(20 + i, "Maruice"+i, "12345", 1000 + i * 10, (i % 2) + 1);
                 Session newSessionPlayer1 = new Session(this.trader, this.battleLobbies, player1);
                 Thread newThread1 = new Thread(new ThreadStart(newSessionPlayer1.RunSession));
                 newThread1.Start();

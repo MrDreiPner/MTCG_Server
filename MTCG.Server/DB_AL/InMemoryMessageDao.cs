@@ -1,6 +1,6 @@
-﻿using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.Models;
 
-namespace SWE1.MessageServer.DAL
+namespace SWE1.MTCG.DAL
 {
     internal class InMemoryMessageDao : IMessageDao
     {

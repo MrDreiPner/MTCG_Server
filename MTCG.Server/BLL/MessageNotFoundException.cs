@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SWE1.MessageServer.BLL
+namespace SWE1.MTCG.BLL
 {
     [Serializable]
     public class MessageNotFoundException : Exception

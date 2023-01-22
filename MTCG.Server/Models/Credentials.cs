@@ -1,4 +1,4 @@
-﻿namespace SWE1.MessageServer.Models
+﻿namespace SWE1.MTCG.Models
 {
     public class Credentials
     {

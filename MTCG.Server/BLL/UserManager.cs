@@ -1,12 +1,12 @@
-﻿using SWE1.MessageServer.DAL;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.DAL;
+using SWE1.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MessageServer.BLL
+namespace SWE1.MTCG.BLL
 {
     public class UserManager : IUserManager
     {
@@ -17,9 +17,24 @@ namespace SWE1.MessageServer.BLL
             _userDao = userDao;
         }
 
-        public User UpdateUser(string authToken)
+        public void UpdateUser(User user, UserContent userContent, string userToUpdate)
         {
-            return _userDao.GetUserByAuthToken(authToken) ?? throw new UserNotFoundException();
+            Console.WriteLine("We are here - user to update: " + userToUpdate);
+            if (_userDao.UpdateUser(userToUpdate, userContent) == false)
+                throw new UserNotFoundException();
+        }
+
+        public UserContent? GetUser(string userToFetch)
+        {
+            UserContent user = _userDao.GetUser(userToFetch);
+            if (user == null)
+            {
+                throw new UserNotFoundException();
+            }
+            else
+            {
+                return user;
+            }
         }
 
         public User LoginUser(Credentials credentials)
@@ -36,9 +51,25 @@ namespace SWE1.MessageServer.BLL
             }
         }
 
+        public User GetUserByUsername(string username)
+        {
+            User? user = _userDao.GetUserByUsername(username);
+            if (user == null)
+            {
+                Console.WriteLine("Exception thrown");
+                throw new UserNotFoundException();
+            }
+            return user;
+        }
         public User GetUserByAuthToken(string authToken)
         {
-            return _userDao.GetUserByAuthToken(authToken) ?? throw new UserNotFoundException();
+            User? user = _userDao.GetUserByAuthToken(authToken);
+            if(user == null)
+            {
+                Console.WriteLine("Exception thrown"); 
+                throw new UserNotFoundException();
+            }
+            return user;
         }
     }
 }

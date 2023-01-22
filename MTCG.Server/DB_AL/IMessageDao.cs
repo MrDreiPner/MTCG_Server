@@ -1,11 +1,11 @@
-﻿using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MessageServer.DAL
+namespace SWE1.MTCG.DAL
 {
     public interface IMessageDao
     {

@@ -12,12 +12,12 @@ namespace MTCG_Server
     {
         protected Trader trader;
         protected List<BattleLobby> battleLobbies;
-        protected User myPlayer;
+        protected BattleUser myPlayer;
         private bool busyWaiting;
 
         public Trader Trader { get { return trader; } set { trader = value; } }
         public List<BattleLobby> BattleLobbies { get { return battleLobbies; } set { battleLobbies = value; } }
-        public Session(Trader trader, List<BattleLobby> battleLobbies, User myPlayer)
+        public Session(Trader trader, List<BattleLobby> battleLobbies, BattleUser myPlayer)
         {
             this.trader = trader;
             this.battleLobbies = battleLobbies;

@@ -1,4 +1,4 @@
-﻿namespace SWE1.MessageServer.Core.Routing
+﻿namespace SWE1.MTCG.Core.Routing
 {
     public interface IRouteCommand
     {

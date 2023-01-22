@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SWE1.MessageServer.DAL
+namespace SWE1.MTCG.DAL
 {
     [Serializable]
     internal class DataAccessFailedException : Exception

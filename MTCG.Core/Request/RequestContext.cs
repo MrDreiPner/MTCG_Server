@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SWE1.MessageServer.Core.Request
+namespace SWE1.MTCG.Core.Request
 {
     public class RequestContext
     {

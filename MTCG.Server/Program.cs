@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using SWE1.MessageServer.API.RouteCommands;
-using SWE1.MessageServer.BLL;
-using SWE1.MessageServer.Core.Server;
-using SWE1.MessageServer.DAL;
+using SWE1.MTCG.DAL;
+using SWE1.MTCG.BLL;
+using SWE1.MTCG.API.RouteCommands;
+using SWE1.MTCG.BLL;
+using SWE1.MTCG.Core.Server;
+using SWE1.MTCG.DAL;
 using System.Net;
 
 // PostgreSQL DAOs
@@ -11,6 +13,7 @@ var connectionString = "Host=localhost;Port=10002;Username=postgres;Password=Aur
 var database = new Database(connectionString);
 var userDao = database.UserDao;
 var messageDao = database.MessageDao;
+var packageDao = database.PackageDao;
 
 // In Memory DAOs
 //var userDao = new InMemoryUserDao();
@@ -18,7 +21,8 @@ var messageDao = database.MessageDao;
 
 var userManager = new UserManager(userDao);
 var messageManager = new MessageManager(messageDao);
+var packageManager = new PackageManager(packageDao);
 
-var router = new Router(userManager, messageManager);
+var router = new Router(userManager, messageManager, packageManager);
 var server = new HttpServer(IPAddress.Any, 10001, router);
 server.Start();

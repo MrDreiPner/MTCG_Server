@@ -1,8 +1,8 @@
-﻿using SWE1.MessageServer.BLL;
-using SWE1.MessageServer.Core.Response;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.BLL;
+using SWE1.MTCG.Core.Response;
+using SWE1.MTCG.Models;
 
-namespace SWE1.MessageServer.API.RouteCommands.Messages
+namespace SWE1.MTCG.API.RouteCommands.Messages
 {
     internal class UpdateMessageCommand : AuthenticatedRouteCommand
     {

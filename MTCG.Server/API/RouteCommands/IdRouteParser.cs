@@ -1,12 +1,12 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace SWE1.MessageServer.API.RouteCommands
+namespace SWE1.MTCG.API.RouteCommands
 {
     internal class IdRouteParser : IRouteParser
     {
-        public bool IsMatch(string resourcePath, string routePattern)
+        public bool IsUsersMatch(string resourcePath, string routePattern)
         {
-            var pattern = "^" + routePattern.Replace("{id}", ".*").Replace("/", "\\/") + "(\\?.*)?$";
+            var pattern = "^" + routePattern.Replace("{username}", ".*").Replace("/", "\\/") + "(\\?.*)?$";
             return Regex.IsMatch(resourcePath, pattern);
         }
 
@@ -30,6 +30,27 @@ namespace SWE1.MessageServer.API.RouteCommands
             var pattern = "^" + routePattern.Replace("{id}", "(?<id>[^\\?\\/]*)").Replace("/", "\\/") + "$";
             var result = Regex.Match(resourcePath, pattern);
             return result.Groups["id"].Success ? result.Groups["id"].Value : null;
+        }
+
+        public Dictionary<string, string> ParseUsernameParameters(string resourcePath, string routePattern)
+        {
+            // query parameters
+            var parameters = ParseQueryParameters(resourcePath);
+
+            // id parameter
+            var username = ParseUsernameParameter(resourcePath, routePattern);
+            if (username != null)
+            {
+                parameters["username"] = username;
+            }
+
+            return parameters;
+        }
+        private string? ParseUsernameParameter(string resourcePath, string routePattern)
+        {
+            var pattern = "^" + routePattern.Replace("{username}", "(?<username>[^\\?\\/]*)").Replace("/", "\\/") + "$";
+            var result = Regex.Match(resourcePath, pattern);
+            return result.Groups["username"].Success ? result.Groups["username"].Value : null;
         }
 
         private Dictionary<string, string> ParseQueryParameters(string route)
@@ -56,5 +77,7 @@ namespace SWE1.MessageServer.API.RouteCommands
 
             return parameters;
         }
+
+
     }
 }

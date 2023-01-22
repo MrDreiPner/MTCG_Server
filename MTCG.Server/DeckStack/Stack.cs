@@ -19,8 +19,8 @@ namespace MTCG_Server.DeckStack
 
         public Stack()
         {
-            Card player1 = new Monster(12, "Dragonlord", 120);
-            Card player2 = new Spell(45, "Magnum Spark", 50);
+            Card player1 = new Monster("xxx", "Dragonlord", 120);
+            Card player2 = new Spell("xxx", "Magnum Spark", 50);
             size = 0;
             stackCards = new List<Card>();
             AddCard(player1);

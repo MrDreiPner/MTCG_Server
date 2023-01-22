@@ -8,8 +8,8 @@ namespace MTCG_Server.CardTypes
 {
     abstract class Card
     {
-        protected int _guID;
-        protected string? _name;
+        protected string _guID;
+        protected string _name;
         protected Server.ElementID _elementID;
         protected int _dmg;
         protected bool _inDeck;
@@ -19,8 +19,8 @@ namespace MTCG_Server.CardTypes
         protected string _type;
 
 
-        public int GuID{ get { return _guID; } }
-        public string? Name { get { return _name; }}
+        public string GuID { get { return _guID; } }
+        public string Name { get { return _name; }}
         public Server.ElementID ElementID { get { return _elementID; } }
         public int Dmg { get { return _dmg; }}
         public bool InDeck { 

@@ -11,8 +11,8 @@ namespace MTCG_Server.BattleClasses
     internal class BattleLobby
     {
         private static Random rand = new Random();
-        private User player1;
-        private User player2;
+        private BattleUser player1;
+        private BattleUser player2;
         private string? player1Name;
         private string? player2Name;
         private Deck? player1Deck;
@@ -38,7 +38,7 @@ namespace MTCG_Server.BattleClasses
 
         public void AddPlayer1(object player1)
         {
-            this.player1 = (User) player1;
+            this.player1 = (BattleUser) player1;
             player1Name = this.player1.Username;
             player1Deck = this.player1.Deck;
             _playerCount++;
@@ -47,7 +47,7 @@ namespace MTCG_Server.BattleClasses
         public void AddPlayer2(object player2)
         {
             _playerCount++;
-            this.player2 = (User) player2;
+            this.player2 = (BattleUser) player2;
             player2Name = this.player2.Username;
             player2Deck = this.player2.Deck;
             //player2Deck.PrintDeck();

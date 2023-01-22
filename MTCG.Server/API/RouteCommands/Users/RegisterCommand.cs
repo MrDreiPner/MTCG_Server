@@ -1,9 +1,9 @@
-﻿using SWE1.MessageServer.BLL;
-using SWE1.MessageServer.Core.Response;
-using SWE1.MessageServer.Core.Routing;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.BLL;
+using SWE1.MTCG.Core.Response;
+using SWE1.MTCG.Core.Routing;
+using SWE1.MTCG.Models;
 
-namespace SWE1.MessageServer.API.RouteCommands.Users
+namespace SWE1.MTCG.API.RouteCommands.Users
 {
     internal class RegisterCommand : IRouteCommand
     {

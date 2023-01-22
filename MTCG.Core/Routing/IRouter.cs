@@ -1,6 +1,6 @@
-﻿using SWE1.MessageServer.Core.Request;
+﻿using SWE1.MTCG.Core.Request;
 
-namespace SWE1.MessageServer.Core.Routing
+namespace SWE1.MTCG.Core.Routing
 {
     public interface IRouter
     {

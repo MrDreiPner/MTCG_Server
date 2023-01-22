@@ -1,4 +1,4 @@
-﻿using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,14 +6,15 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MessageServer.BLL
+namespace SWE1.MTCG.BLL
 {
     internal interface IUserManager
     {
         User LoginUser(Credentials credentials);
-
-        User UpdateUser(string authToken);
+        UserContent GetUser(string userToFetch);
+        void UpdateUser(User user, UserContent userContent, string userToUpdate);
         void RegisterUser(Credentials credentials);
         User GetUserByAuthToken(string authToken);
+        User GetUserByUsername(string username);
     }
 }

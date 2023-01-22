@@ -1,10 +1,10 @@
-﻿namespace SWE1.MessageServer.Models
+﻿namespace SWE1.MTCG.Models
 {
     public class User
     {
         public string Username { get; private set; }
         public string Password { get; private set; }
-        public string Token => $"{Username}-msgToken";
+        public string Token => $"{Username}-mtcgToken";
 
         public User(string username, string password)
         {

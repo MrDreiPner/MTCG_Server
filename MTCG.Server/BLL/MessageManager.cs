@@ -1,7 +1,7 @@
-﻿using SWE1.MessageServer.DAL;
-using SWE1.MessageServer.Models;
+﻿using SWE1.MTCG.DAL;
+using SWE1.MTCG.Models;
 
-namespace SWE1.MessageServer.BLL
+namespace SWE1.MTCG.BLL
 {
     public class MessageManager : IMessageManager
     {

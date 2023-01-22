@@ -5,10 +5,14 @@
       "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -17,10 +21,14 @@
       "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Npgsql/7.0.1": {
@@ -30,19 +38,27 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Npgsql.dll": {}
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Npgsql.dll": {}
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -207,19 +223,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\porub\\.nuget\\packages\\": {}
+    "C:\\Users\\Matus\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
+      "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
       "projectName": "MTCG_Server",
-      "projectPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
-      "packagesPath": "C:\\Users\\porub\\.nuget\\packages\\",
-      "outputPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\obj\\",
+      "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
+      "packagesPath": "C:\\Users\\Matus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\porub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Matus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -233,8 +254,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {
-              "projectPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj"
+            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {
+              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj"
             }
           }
         }
@@ -264,7 +285,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -273,7 +295,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
