@@ -27,30 +27,9 @@ namespace SWE1.MTCG.BLL
             return package;
         }
 
-        public void BuyPackage()
+        public Package? BuyPackage(string username)
         {
-            if (_packageDao.GetOldestPackage() == null)
-            {
-                throw new MessageNotFoundException();
-            }
+            return _packageDao.GetOldestPackage(username);
         }
-
-        /*public IEnumerable<Package> ShowPackages()
-        {
-            return _packageDao.GetPackages();
-        }
-        public void UpdateMessage(User user, int messageId, string content)
-        {
-            Message? message;
-            if ((message = _messageDao.GetMessageById(user.Username, messageId)) != null)
-            {
-                message.Content = content;
-                _messageDao.UpdateMessage(user.Username, message);
-            }
-            else
-            {
-                throw new MessageNotFoundException();
-            }
-        }*/
     }
 }

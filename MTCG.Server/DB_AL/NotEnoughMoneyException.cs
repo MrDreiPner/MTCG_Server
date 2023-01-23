@@ -3,9 +3,9 @@
 namespace SWE1.MTCG.DAL
 {
     [Serializable]
-    public class CardAlreadyExistsException : Exception
+    public class NotEnoughMoneyException : Exception
     {
-        public CardAlreadyExistsException()
+        public NotEnoughMoneyException()
         {
         }
 

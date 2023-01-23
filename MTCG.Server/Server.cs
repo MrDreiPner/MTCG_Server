@@ -50,7 +50,7 @@ namespace MTCG_Server
             //Start mock battle
             for(int i = 0; i < 100; i++)
             {
-                BattleUser player1 = new BattleUser(20 + i, "Maruice"+i, "12345", 1000 + i * 10, (i % 2) + 1);
+                BattleUser player1 = new BattleUser("Test"+1, "Maruice"+i, "12345", 1000 + i * 10, (i % 2) + 1);
                 Session newSessionPlayer1 = new Session(this.trader, this.battleLobbies, player1);
                 Thread newThread1 = new Thread(new ThreadStart(newSessionPlayer1.RunSession));
                 newThread1.Start();

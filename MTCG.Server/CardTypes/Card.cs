@@ -14,14 +14,14 @@ namespace MTCG_Server.CardTypes
         protected int _dmg;
         protected bool _inDeck;
         protected bool _inTrade;
-        protected int _ownerID;
+        protected string _ownerID;
         protected int _packID;
         protected string _type;
 
 
         public string GuID { get { return _guID; } }
         public string Name { get { return _name; }}
-        public Server.ElementID ElementID { get { return _elementID; } }
+        public Server.ElementID ElementID { get { return _elementID; } set { _elementID = value; } }
         public int Dmg { get { return _dmg; }}
         public bool InDeck { 
             get { return _inDeck; }
@@ -31,7 +31,8 @@ namespace MTCG_Server.CardTypes
             get { return _inTrade; }
             set { _inTrade = value; }
         }
-        public int OwnerID{
+        public string OwnerID
+        {
             get { return _ownerID; }
             set { _ownerID = value; }
         }

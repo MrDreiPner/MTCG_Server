@@ -11,9 +11,9 @@ namespace MTCG_Server.DeckStack
     {
         protected int size;
         protected List<Card> stackCards;
-        protected int _ownerID;
+        protected string _ownerID;
 
-        public int OwnerID { get { return _ownerID; } }
+        public string OwnerID { get { return _ownerID; } }
         public int Size { get { return size; } }
         public List<Card> StackCards { get { return stackCards; } set { stackCards = value; } }
 
@@ -25,7 +25,7 @@ namespace MTCG_Server.DeckStack
             stackCards = new List<Card>();
             AddCard(player1);
             AddCard(player2);
-            _ownerID = 100;
+            _ownerID = "test";
             Console.WriteLine("Size of Deck: "+size+"\nOwnerID of this Stack: "+_ownerID);
         }
 

@@ -10,6 +10,8 @@ using SWE1.MTCG.Models;
 using System.IO;
 using HttpMethod = SWE1.MTCG.Core.Request.HttpMethod;
 using MTCG_Server.API.RouteCommands.Packages;
+using MTCG_Server.API.RouteCommands.Cards;
+using MTCG_Server.API.RouteCommands.Battles;
 
 namespace SWE1.MTCG.API.RouteCommands
 {
@@ -18,14 +20,18 @@ namespace SWE1.MTCG.API.RouteCommands
         private readonly IUserManager _userManager;
         private readonly IMessageManager _messageManager;
         private readonly IPackageManager _packageManager;
+        private readonly ICardManager _cardManager;
+        private readonly IBattleManager _battleManager;
         private readonly IdentityProvider _identityProvider;
         private readonly IRouteParser _routeParser = new IdRouteParser();
 
-        public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager)
+        public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager)
         {
             _userManager = userManager;
             _messageManager = messageManager;
             _packageManager = packageManager;
+            _cardManager = cardManager;
+            _battleManager = battleManager;
 
             // better: define IIdentityProvider interface and get concrete implementation passed in as dependency
             _identityProvider = new IdentityProvider(userManager);
@@ -49,9 +55,18 @@ namespace SWE1.MTCG.API.RouteCommands
 
                 //Package management
                 { Method: HttpMethod.Post, ResourcePath: "/packages" } => new AddPackageCommand(_packageManager, identity(request), Deserialize<List<CardPrototype>>(request.Payload)),
+                { Method: HttpMethod.Post, ResourcePath: "/transactions/packages" } => new BuyPackageCommand(_packageManager, identity(request)),
 
+                //Card management
+                { Method: HttpMethod.Get, ResourcePath: "/cards" } => new ShowCardsCommand(_cardManager, identity(request)),
+                { Method: HttpMethod.Get, ResourcePath: var path } when path == "/deck?format=json" || path == "/deck" => new ShowDeckCommand(_cardManager, identity(request), 1),
+                { Method: HttpMethod.Get, ResourcePath: var path } when path == "/deck?format=plain" => new ShowDeckCommand(_cardManager, identity(request), 2),
+                { Method: HttpMethod.Put, ResourcePath: "/deck" } => new ConfigureDeckCommand(_cardManager, identity(request), Deserialize<List<string>>(request.Payload)),
 
-
+                //Battle management
+                { Method: HttpMethod.Get, ResourcePath: "/stats" } => new ShowUserStatsCommand(_battleManager, identity(request)),
+                { Method: HttpMethod.Get, ResourcePath: "/scoreboard" } => new ShowScoreboardCommand(_battleManager, identity(request)),
+                { Method: HttpMethod.Post, ResourcePath: "/battles" } => new StartBattleCommand(_battleManager, identity(request)),
                 //{ Method: HttpMethod.Post, ResourcePath: "/messages"} => new AddMessageCommand(_messageManager, identity(request), EnsureBody(request.Payload)),
                 //{ Method: HttpMethod.Get, ResourcePath: "/messages" } => new ListMessagesCommand(_messageManager, identity(request)),
 

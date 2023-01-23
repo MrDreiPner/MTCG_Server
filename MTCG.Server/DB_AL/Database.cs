@@ -12,17 +12,18 @@ namespace SWE1.MTCG.DAL
     {
         // see also https://www.postgresql.org/docs/current/ddl-constraints.html
         private const string CreateTablesCommand = @"
-CREATE TABLE IF NOT EXISTS users (username varchar PRIMARY KEY, password varchar, bio varchar, image varchar, name varchar , coins numeric, elo numeric);
+CREATE TABLE IF NOT EXISTS users (username varchar PRIMARY KEY, password varchar, bio varchar, image varchar, name varchar , coins numeric, elo numeric, wins numeric, losses numeric);
 CREATE TABLE IF NOT EXISTS cards (cid varchar PRIMARY KEY, cardname varchar, elementID element_id, dmg numeric, inDeck boolean, inTrade boolean, ownerID varchar, packID numeric, type varchar, CONSTRAINT owner_ID FOREIGN KEY(ownerID) REFERENCES users(username));
 CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY) 
 ";
-        /*CREATE TYPE element_id AS ENUM ('water', 'fire', 'normal');*/
+        //CREATE TYPE element_id AS ENUM ('water', 'fire', 'normal');
 
 
         public IMessageDao MessageDao { get; private set; }
         public IUserDao UserDao { get; private set; }
         public IPackageDao PackageDao { get; private set; }
-
+        public ICardDao CardDao { get; private set; }
+        public IBattleDao BattleDao { get; private set; }
         public Database(string connectionString)
         {
             try
@@ -44,6 +45,8 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
                 UserDao = new DatabaseUserDao(connectionString);
                 MessageDao = new DatabaseMessageDao(connectionString);
                 PackageDao = new DatabasePackageDao(connectionString);
+                CardDao = new DatabaseCardDao(connectionString);
+                BattleDao = new DatabaseBattleDao(connectionString);
             }
             catch (NpgsqlException e)
             {

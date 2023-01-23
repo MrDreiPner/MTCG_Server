@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace SWE1.MTCG.BLL
 {
-    internal interface IPackageManager
+    internal interface IBattleManager
     {
-        //public IEnumerable<Package> ShowPackages();
-        Package AddPackage(List<Card> packContent);
-        Package BuyPackage(string username);
+
     }
 }

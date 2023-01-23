@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace SWE1.MTCG.DAL
 {
-    internal interface IPackageDao
+    internal interface IBattleDao
     {
-        //IEnumerable<Package> GetPackages();
-        Package? GetOldestPackage(string username);
-        Package? AddPackage(List<Card> packContent);
+        
     }
 }

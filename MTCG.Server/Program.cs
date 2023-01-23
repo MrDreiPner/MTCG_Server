@@ -14,6 +14,8 @@ var database = new Database(connectionString);
 var userDao = database.UserDao;
 var messageDao = database.MessageDao;
 var packageDao = database.PackageDao;
+var cardDao = database.CardDao;
+var battleDao = database.BattleDao;
 
 // In Memory DAOs
 //var userDao = new InMemoryUserDao();
@@ -22,7 +24,9 @@ var packageDao = database.PackageDao;
 var userManager = new UserManager(userDao);
 var messageManager = new MessageManager(messageDao);
 var packageManager = new PackageManager(packageDao);
+var cardManager = new CardManager(cardDao);
+var battleManager = new BattleManager(battleDao);
 
-var router = new Router(userManager, messageManager, packageManager);
+var router = new Router(userManager, messageManager, packageManager, cardManager, battleManager);
 var server = new HttpServer(IPAddress.Any, 10001, router);
 server.Start();

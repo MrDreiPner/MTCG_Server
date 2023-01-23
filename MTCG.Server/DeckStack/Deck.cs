@@ -12,13 +12,13 @@ namespace MTCG_Server.DeckStack
         private const int maxSize = 4;
         protected int size;
         protected List<Card>? deckCards;
-        protected int _ownerID;
+        protected string _ownerID;
 
-        public int OwnerID { get { return _ownerID; } }
+        public string OwnerID { get { return _ownerID; } }
         public int Size { get { return size; } }
         public List<Card> DeckCards { get { return deckCards; } set { deckCards = value; } }
 
-        public Deck(int ownerID, int deckType)
+        public Deck(string ownerID, int deckType)
         {
             Card card1, card2, card3, card4;
             switch (deckType)

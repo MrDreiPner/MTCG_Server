@@ -11,13 +11,13 @@ namespace MTCG_Server
     internal class Trader
     {
         private struct TraderStruct {
-            private int ownerID;
+            private string ownerID;
             private Card cardToTrade;
             private int desiredDmg;
             private int desiredElement;
             private int desiredType;
 
-            public int OwnerID { get { return ownerID; } set { ownerID = value; } }
+            public string OwnerID { get { return ownerID; } set { ownerID = value; } }
             public Card CardToTrade { get { return cardToTrade; } set { cardToTrade = value; } }
             public int DesiredDmg { get { return desiredDmg; } set { desiredDmg = value; } }
             public int DesiredElement { get { return desiredElement; } set { desiredElement = value; } }
@@ -66,7 +66,7 @@ namespace MTCG_Server
             }
         }
 
-        public void RemoveOffer(int ownerID) { 
+        public void RemoveOffer(string ownerID) { 
             for(int i = trades.Count() - 1; i >= 0; i--)
             {
                 if(ownerID == trades[i].OwnerID) {

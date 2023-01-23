@@ -13,7 +13,7 @@ namespace SWE1.MTCG.API.RouteCommands.Users
 
         public GetUserCommand(IUserManager userManager, User identity, string username) : base(identity)
         {
-            Console.WriteLine("Get User command aufgerufen");
+            //Console.WriteLine("Get User command aufgerufen");
             _userManager = userManager;
             _passedUsername = username;
         }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SWE1.MTCG.DAL
 {
-    internal interface IPackageDao
+    internal interface ICardDao
     {
-        //IEnumerable<Package> GetPackages();
-        Package? GetOldestPackage(string username);
-        Package? AddPackage(List<Card> packContent);
+        List<Card>? ShowCards(string username);
+        List<Card>? ShowDeck(string username);
+        List<Card>? ConfigureDeck(string username, List<string> arguments);
     }
 }

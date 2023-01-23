@@ -17,16 +17,16 @@ namespace MTCG_Server.API.RouteCommands.Packages
         private readonly IPackageManager _packageManager;
         private readonly List<Card> _cards;
 
-        public AddPackageCommand(IPackageManager userManager, User identity, List<CardPrototype> cards) : base(identity)
+        public AddPackageCommand(IPackageManager packageManager, User identity, List<CardPrototype> cards) : base(identity)
         {
             Console.WriteLine("Building Deck command aufgerufen");
             if (Identity.Username != null)
             {
-                _packageManager = userManager;
+                _packageManager = packageManager;
                 var protoCards = new List<CardPrototype>();
                 protoCards = cards;
                 _cards = new List<Card>();
-                foreach (CardPrototype card in cards)
+                foreach (CardPrototype card in protoCards)
                 {
                     Card newCard;
                     string cardname = card.Name;
@@ -50,8 +50,6 @@ namespace MTCG_Server.API.RouteCommands.Packages
                     Console.WriteLine("Card passed: " + card.Name + " ID: " + card.Id + " Damage: " + card.Damage);
                 }
             }
-            else 
-                throw new UserNotFoundException();
         }
 
         public override Response Execute()
