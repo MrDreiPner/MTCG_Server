@@ -14,7 +14,7 @@ namespace SWE1.MTCG.DAL
 {
     internal class DatabaseUserDao : DatabaseBaseDao, IUserDao
     {
-        private const string InsertUserCommand = "INSERT INTO users(username, password, name, coins, elo) VALUES (@username, @password, @username, 20, 500)";
+        private const string InsertUserCommand = "INSERT INTO users(username, password, name, coins, elo, wins, losses) VALUES (@username, @password, @username, 20, 100, 0, 0)";
         private const string SelectUsersCommand = "SELECT username, password FROM users";
         private const string SelectUserByCredentialsCommand = "SELECT username, password FROM users WHERE username=@username AND password=@password";
         private const string SelectUserContentByUsername = "SELECT name, bio, image FROM users WHERE username=@username";

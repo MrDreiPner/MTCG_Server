@@ -6,6 +6,7 @@ using SWE1.MTCG.BLL;
 using SWE1.MTCG.Core.Server;
 using SWE1.MTCG.DAL;
 using System.Net;
+using MTCG_Server.BattleClasses;
 
 // PostgreSQL DAOs
 // better: fetch from config file -> next semester
@@ -27,6 +28,9 @@ var packageManager = new PackageManager(packageDao);
 var cardManager = new CardManager(cardDao);
 var battleManager = new BattleManager(battleDao);
 
-var router = new Router(userManager, messageManager, packageManager, cardManager, battleManager);
+//Battle Lobbies
+List<BattleLobby> battleLobbies = new List<BattleLobby>();
+
+var router = new Router(userManager, messageManager, packageManager, cardManager, battleManager, battleLobbies);
 var server = new HttpServer(IPAddress.Any, 10001, router);
 server.Start();

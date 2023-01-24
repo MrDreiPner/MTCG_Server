@@ -9,54 +9,24 @@ namespace MTCG_Server.DeckStack
 {
     internal class Deck
     {
-        private const int maxSize = 4;
         protected int size;
         protected List<Card>? deckCards;
-        protected string _ownerID;
+        protected string? _ownerID;
 
         public string OwnerID { get { return _ownerID; } }
         public int Size { get { return size; } }
         public List<Card> DeckCards { get { return deckCards; } set { deckCards = value; } }
 
-        public Deck(string ownerID, int deckType)
+        public Deck(string ownerID, List<Card> incomingDeck)
         {
-            Card card1, card2, card3, card4;
-            switch (deckType)
-            {
-                case 1:
-                    card1 = new Monster("xxx", "FireDragee", 75);
-                    card2 = new Spell("xxx", "WaterSwoosh", 80);
-                    card3 = new Spell("xxx", "IronicHail", 50);
-                    card4 = new Spell("xxx", "FireTatertot", 69);
-                break;
-                case 2:
-                    card1 = new Monster("xxx", "FireDragonlord", 100);
-                    card2 = new Spell("xxx", "WaterSpark", 60);
-                    card3 = new Monster("xxx", "MetalShower", 50);
-                    card4 = new Spell("xxx", "WaterGreata", 96);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            size = 0;
-            _ownerID = ownerID;
             DeckCards = new List<Card>();
-            AddCard(card1);
-            AddCard(card2);
-            AddCard(card3);
-            AddCard(card4);
-            foreach(Card card in DeckCards)
-            {
-                card.OwnerID = _ownerID;
-            }
-            //RemoveCard(2);
-            //PrintDeck();
-            Console.WriteLine("Size of Deck: " + size + "\nOwnerID of this Deck: " + _ownerID);
+            DeckCards = incomingDeck;
+            size = DeckCards.Count();
+            _ownerID = ownerID;
+            Console.WriteLine("OwnerID of this Deck: " + _ownerID + " with " + size + " cards\n");
         }
         public void AddCard(Card newCard)
         {
-            newCard.InDeck = true;
             DeckCards.Add(newCard);
             size++;
             //Console.WriteLine("Added: " + newCard.Name + " - ID: " + newCard.GuID+" to OwnerID "+_ownerID);

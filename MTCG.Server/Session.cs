@@ -5,32 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using MTCG_Server.BattleClasses;
 using MTCG_Server.DeckStack;
+using MTCG_Server.Models;
 
 namespace MTCG_Server
 {
     internal class Session
     {
-        protected Trader trader;
+        //protected Trader trader;
         protected List<BattleLobby> battleLobbies;
         protected BattleUser myPlayer;
         private bool busyWaiting;
 
-        public Trader Trader { get { return trader; } set { trader = value; } }
+        //public Trader Trader { get { return trader; } set { trader = value; } }
         public List<BattleLobby> BattleLobbies { get { return battleLobbies; } set { battleLobbies = value; } }
-        public Session(Trader trader, List<BattleLobby> battleLobbies, BattleUser myPlayer)
+        public Session(/*Trader trader,*/ List<BattleLobby> battleLobbies, BattleUser myPlayer)
         {
-            this.trader = trader;
+            //this.trader = trader;
             this.battleLobbies = battleLobbies;
             this.myPlayer = myPlayer;
         }
 
         ~Session() { } 
-        public void RunSession()
-        {
-            SendToBattleLobby();
-        }
 
-        public void SendToBattleLobby()
+        public BattleResults SendToBattleLobby()
         {
             bool foundLobby = false;
             BattleLobby_Mutex.BattleMutex.WaitOne();
@@ -80,6 +77,7 @@ namespace MTCG_Server
                     }
                     Thread.Sleep(1000);
                 }
+                return 
                 Console.WriteLine(myPlayer.Username + " done waiting!");
             }
             //player1.Deck.PrintDeck();

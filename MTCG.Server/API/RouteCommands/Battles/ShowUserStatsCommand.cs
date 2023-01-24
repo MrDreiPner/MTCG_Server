@@ -32,13 +32,15 @@ namespace MTCG_Server.API.RouteCommands.Battles
             var response = new Response();
             try
             {
+                UserStats userStats;
+                userStats = _battleManager.ShowUserStats(Identity.Username);
                 response.StatusCode = StatusCode.Ok;
+                response.Payload = JsonConvert.SerializeObject(userStats, Formatting.Indented);
             }
             catch (Exception ex)
             {
                 if (ex is UserNotFoundException)
                     response.StatusCode = StatusCode.Unauthorized;
-
             }
             return response;
         }

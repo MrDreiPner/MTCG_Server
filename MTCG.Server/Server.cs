@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MTCG_Server.BattleClasses;
 using MTCG_Server.DeckStack;
+using MTCG_Server.Models;
 
 namespace MTCG_Server
 {
@@ -48,14 +49,14 @@ namespace MTCG_Server
             traderThread.Start();
             ThreadList.Add(traderThread);
             //Start mock battle
-            for(int i = 0; i < 100; i++)
+            /*for(int i = 0; i < 100; i++)
             {
-                BattleUser player1 = new BattleUser("Test"+1, "Maruice"+i, "12345", 1000 + i * 10, (i % 2) + 1);
+                BattleUser player1 = new BattleUser("Test"+1, "Maruice"+i, 1000 + i * 10);
                 Session newSessionPlayer1 = new Session(this.trader, this.battleLobbies, player1);
                 Thread newThread1 = new Thread(new ThreadStart(newSessionPlayer1.RunSession));
                 newThread1.Start();
                 ThreadList.Add(newThread1);
-            }
+            }*/
             int count = 0;
             Thread.Sleep(1000);
             trader.AbortTrader();

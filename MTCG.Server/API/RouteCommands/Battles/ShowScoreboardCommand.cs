@@ -32,6 +32,10 @@ namespace MTCG_Server.API.RouteCommands.Battles
             var response = new Response();
             try
             {
+                List<UserStats> userStats = new List<UserStats>();
+                userStats = _battleManager.ShowScoreboard();
+                response.StatusCode = StatusCode.Ok;
+                response.Payload = JsonConvert.SerializeObject(userStats, Formatting.Indented);
                 response.StatusCode = StatusCode.Ok;
             }
             catch (Exception ex)

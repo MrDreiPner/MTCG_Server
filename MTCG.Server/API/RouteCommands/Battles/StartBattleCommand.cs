@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using SWE1.MTCG.DAL;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
+using MTCG_Server.BattleClasses;
 
 namespace MTCG_Server.API.RouteCommands.Battles
 {
@@ -18,7 +19,7 @@ namespace MTCG_Server.API.RouteCommands.Battles
     {
         private readonly IBattleManager _battleManager;
 
-        public StartBattleCommand(IBattleManager battleManager, User identity) : base(identity)
+        public StartBattleCommand(IBattleManager battleManager, User identity, List<BattleLobby> _battleLobbies) : base(identity)
         {
             if (Identity.Username != null)
             {
@@ -32,12 +33,16 @@ namespace MTCG_Server.API.RouteCommands.Battles
             var response = new Response();
             try
             {
+                BattleResultsUser result = _battleManager.StartBattle(Identity.Username);
                 response.StatusCode = StatusCode.Ok;
             }
             catch (Exception ex)
             {
                 if (ex is UserNotFoundException)
                     response.StatusCode = StatusCode.Unauthorized;
+                else if(ex is MessageNotFoundException)
+                    response.StatusCode = StatusCode.NotFound;
+                    response.Payload = "No Deck found for "+ Identity.Username;
 
             }
             return response;

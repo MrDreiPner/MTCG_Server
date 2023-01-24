@@ -12,6 +12,7 @@ using HttpMethod = SWE1.MTCG.Core.Request.HttpMethod;
 using MTCG_Server.API.RouteCommands.Packages;
 using MTCG_Server.API.RouteCommands.Cards;
 using MTCG_Server.API.RouteCommands.Battles;
+using MTCG_Server.BattleClasses;
 
 namespace SWE1.MTCG.API.RouteCommands
 {
@@ -25,13 +26,16 @@ namespace SWE1.MTCG.API.RouteCommands
         private readonly IdentityProvider _identityProvider;
         private readonly IRouteParser _routeParser = new IdRouteParser();
 
-        public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager)
+        private List<BattleLobby> _battleLobbies = new List<BattleLobby>();
+
+        public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, List<BattleLobby> battleLobbies)
         {
             _userManager = userManager;
             _messageManager = messageManager;
             _packageManager = packageManager;
             _cardManager = cardManager;
             _battleManager = battleManager;
+            _battleLobbies = battleLobbies;
 
             // better: define IIdentityProvider interface and get concrete implementation passed in as dependency
             _identityProvider = new IdentityProvider(userManager);
@@ -65,8 +69,8 @@ namespace SWE1.MTCG.API.RouteCommands
 
                 //Battle management
                 { Method: HttpMethod.Get, ResourcePath: "/stats" } => new ShowUserStatsCommand(_battleManager, identity(request)),
-                { Method: HttpMethod.Get, ResourcePath: "/scoreboard" } => new ShowScoreboardCommand(_battleManager, identity(request)),
-                { Method: HttpMethod.Post, ResourcePath: "/battles" } => new StartBattleCommand(_battleManager, identity(request)),
+                { Method: HttpMethod.Get, ResourcePath: "/score" } => new ShowScoreboardCommand(_battleManager, identity(request)),
+                { Method: HttpMethod.Post, ResourcePath: "/battles" } => new StartBattleCommand(_battleManager, identity(request), _battleLobbies),
                 //{ Method: HttpMethod.Post, ResourcePath: "/messages"} => new AddMessageCommand(_messageManager, identity(request), EnsureBody(request.Payload)),
                 //{ Method: HttpMethod.Get, ResourcePath: "/messages" } => new ListMessagesCommand(_messageManager, identity(request)),
 
