@@ -57,7 +57,7 @@ namespace MTCG_Server.API.RouteCommands.Cards
             catch (Exception ex)
             {
                 if (ex is MessageNotFoundException)
-                    response.StatusCode = StatusCode.NotFound;
+                    response.StatusCode = StatusCode.NoContent;
                 else if (ex is UserNotFoundException)
                     response.StatusCode = StatusCode.Unauthorized;
             }

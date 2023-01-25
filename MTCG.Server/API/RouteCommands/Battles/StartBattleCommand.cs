@@ -44,8 +44,8 @@ namespace MTCG_Server.API.RouteCommands.Battles
                 if (ex is UserNotFoundException)
                     response.StatusCode = StatusCode.Unauthorized;
                 else if(ex is MessageNotFoundException)
-                    response.StatusCode = StatusCode.NotFound;
-                    response.Payload = "No Deck found for "+ Identity.Username;
+                    response.StatusCode = StatusCode.NoContent;
+                    response.Payload = "No Deck found for "+ Identity.Username + "\n";
 
             }
             return response;

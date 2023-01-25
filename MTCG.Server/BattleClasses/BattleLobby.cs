@@ -57,7 +57,6 @@ namespace MTCG_Server.BattleClasses
         }
         public void StartCombat()
         {
-            //Thread.Sleep(5000);
             int result;
             int roundCounter = 0;
             while (true)

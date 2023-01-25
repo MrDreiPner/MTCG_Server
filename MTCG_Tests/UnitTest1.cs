@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using MTCG_Server; 
-
+using 
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 
 namespace MTCG_Tests
 {
@@ -16,8 +16,9 @@ namespace MTCG_Tests
         public void Test1()
         {
             //Arrange
-            //Act
 
+            //Act
+            
             //Assert
             Assert.Pass();
         }
