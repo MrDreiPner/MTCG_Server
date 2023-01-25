@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace SWE1.MTCG.API.RouteCommands
+namespace MTCG_Server.MTCG.API.RouteCommands
 {
     internal class IdRouteParser : IRouteParser
     {

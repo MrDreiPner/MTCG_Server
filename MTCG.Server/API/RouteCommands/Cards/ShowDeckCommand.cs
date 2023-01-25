@@ -1,14 +1,14 @@
-﻿using SWE1.MTCG.API.RouteCommands;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.Core.Response;
-using SWE1.MTCG.Models;
+﻿using MTCG_Server.MTCG.API.RouteCommands;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.Core.Response;
+using MTCG_Server.MTCG.Models;
 using MTCG_Server.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SWE1.MTCG.DAL;
+using MTCG_Server.MTCG.DAL;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
 

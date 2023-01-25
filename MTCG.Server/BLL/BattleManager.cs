@@ -1,7 +1,7 @@
-﻿using SWE1.MTCG.Models;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.DAL;
-using SWE1.MTCG.Models;
+﻿using MTCG_Server.MTCG.Models;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.DAL;
+using MTCG_Server.MTCG.Models;
 using MTCG_Server.CardTypes;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 using System.Security.Principal;
 using MTCG_Server.Models;
 using MTCG_Server;
+using MTCG_Server.BattleClasses;
 
-namespace SWE1.MTCG.BLL
+namespace MTCG_Server.MTCG.BLL
 {
     internal class BattleManager : IBattleManager
     {
@@ -33,23 +34,16 @@ namespace SWE1.MTCG.BLL
             return _battleDao.ShowScoreboard();
         }
 
-        public BattleResultsUser StartBattle(string username)
+        public string? StartBattle(string username, List<BattleLobby> battleLobbies)
         {
-            try
-            {
-                BattleResultsUser userResults;
-                BattleUser player;
-                player = _battleDao.StartBattle(username);
-                Session session = new Session(battleLobbies, player);
-                
+            BattleUser player;
+            player = _battleDao.GetBattleUser(username);
+            Session session = new Session(battleLobbies, player);
+            BattleResultsUser? resultUser = session.SendToBattleLobby();
+            _battleDao.UpdateBattleStats(resultUser);
+            string? battleLog = resultUser._battleLog;
 
-                return userResults;
-            }
-            catch (Exception ex)
-            {
-
-            }
-            
+            return battleLog;
         }
     }
 }

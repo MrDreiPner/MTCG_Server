@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MTCG_Server.CardTypes;
 using MTCG_Server.DeckStack;
 using MTCG_Server.Models;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.Models;
 
 namespace MTCG_Server.BattleClasses
 {
@@ -20,7 +20,7 @@ namespace MTCG_Server.BattleClasses
         private Deck? player1Deck;
         private Deck? player2Deck;
         private string? _battleLog;
-        BattleResults _battleResults;
+        public BattleResults battleResults;
 
         private bool lobbyDone;
         private int _checkLobbyDone;
@@ -125,7 +125,7 @@ namespace MTCG_Server.BattleClasses
 
             CaclulateNewELO(winner);
             //CleanUp();
-            _battleResults = new BattleResults(_battleLog, player1.Elo, player1.Wins, player1.Losses, player2.Elo, player2.Wins, player2.Losses);
+            battleResults = new BattleResults(_battleLog, player1.Elo, player1.Wins, player1.Losses, player2.Elo, player2.Wins, player2.Losses);
             lobbyDone = true;
         }
         private void CaclulateNewELO(int winner)

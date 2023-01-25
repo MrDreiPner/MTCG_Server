@@ -9,10 +9,6 @@ using MTCG_Server.Models;
 
 namespace MTCG_Server
 {
-    class BattleLobby_Mutex
-    {
-        public static Mutex BattleMutex= new Mutex();
-    }
     internal class Server
     {
         protected List<BattleLobby> battleLobbies;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MTCG_Server.BattleClasses;
 using MTCG_Server.DeckStack;
 using MTCG_Server.Models;
+using MTCG_Server.MTCG.Models;
+using MTCG_Server.MTCG.API.RouteCommands;
+using System.Net;
 
 namespace MTCG_Server
 {
@@ -27,7 +30,7 @@ namespace MTCG_Server
 
         ~Session() { } 
 
-        public BattleResults SendToBattleLobby()
+        public BattleResultsUser? SendToBattleLobby()
         {
             bool foundLobby = false;
             BattleLobby_Mutex.BattleMutex.WaitOne();
@@ -48,13 +51,13 @@ namespace MTCG_Server
                         {
                             //send response with lobby.Battlelog
                             busyWaiting = false;
+                            BattleResults results = lobby.battleResults;
+                            BattleResultsUser userResults = new BattleResultsUser(results._newEloPlayer2, results._battleLog, results._winsPlayer2, results._lossesPlayer2);
+                            Console.WriteLine(myPlayer.Username + " done waiting!");
+                            return userResults;
                         }
                         Thread.Sleep(1000);
                     }
-                    //BattleLobbies.Remove(lobby);
-                    Console.WriteLine(myPlayer.Username + " done waiting!");
-                    foundLobby = true;
-                    break;
                 }
             }
             if (!foundLobby)
@@ -74,14 +77,15 @@ namespace MTCG_Server
                     {
                         //send response with lobby.Battlelog
                         busyWaiting = false;
+                        BattleResults results = newLobby.battleResults;
+                        BattleResultsUser userResults = new BattleResultsUser(results._newEloPlayer1, results._battleLog, results._winsPlayer1, results._lossesPlayer1);
+                        Console.WriteLine(myPlayer.Username + " done waiting!");
+                        return userResults;
                     }
                     Thread.Sleep(1000);
                 }
-                return 
-                Console.WriteLine(myPlayer.Username + " done waiting!");
             }
-            //player1.Deck.PrintDeck();
-            //player2.Deck.PrintDeck();
+            return null;
         }
 
     }

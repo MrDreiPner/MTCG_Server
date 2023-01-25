@@ -1,14 +1,14 @@
-﻿using SWE1.MTCG.API.RouteCommands;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.Core.Response;
-using SWE1.MTCG.Models;
+﻿using MTCG_Server.MTCG.API.RouteCommands;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.Core.Response;
+using MTCG_Server.MTCG.Models;
 using MTCG_Server.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SWE1.MTCG.DAL;
+using MTCG_Server.MTCG.DAL;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
 using MTCG_Server.BattleClasses;
@@ -18,13 +18,15 @@ namespace MTCG_Server.API.RouteCommands.Battles
     internal class StartBattleCommand : AuthenticatedRouteCommand
     {
         private readonly IBattleManager _battleManager;
+        private List<BattleLobby> _battleLobbyList;
 
-        public StartBattleCommand(IBattleManager battleManager, User identity, List<BattleLobby> _battleLobbies) : base(identity)
+        public StartBattleCommand(IBattleManager battleManager, User identity, List<BattleLobby> battleLobbies) : base(identity)
         {
             if (Identity.Username != null)
             {
                 Console.WriteLine("Show Start Battle");
                 _battleManager = battleManager;
+                _battleLobbyList = battleLobbies;
             }
         }
 
@@ -33,8 +35,9 @@ namespace MTCG_Server.API.RouteCommands.Battles
             var response = new Response();
             try
             {
-                BattleResultsUser result = _battleManager.StartBattle(Identity.Username);
+                string? battlelog = _battleManager.StartBattle(Identity.Username, _battleLobbyList);
                 response.StatusCode = StatusCode.Ok;
+                response.Payload = battlelog;
             }
             catch (Exception ex)
             {

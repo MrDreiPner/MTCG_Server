@@ -1,21 +1,23 @@
-﻿using SWE1.MTCG.BLL;
+﻿using MTCG_Server.MTCG.BLL;
 using Newtonsoft.Json;
-using SWE1.MTCG.API.RouteCommands.Messages;
-using SWE1.MTCG.API.RouteCommands.Users;
-using SWE1.MTCG.BLL;
+using MTCG_Server.MTCG.API.RouteCommands.Users;
 using MTCG_Server.CardTypes;
-using SWE1.MTCG.Core.Request;
-using SWE1.MTCG.Core.Routing;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.Core.Request;
+using MTCG_Server.MTCG.Core.Routing;
+using MTCG_Server.MTCG.Models;
 using System.IO;
-using HttpMethod = SWE1.MTCG.Core.Request.HttpMethod;
+using HttpMethod = MTCG_Server.MTCG.Core.Request.HttpMethod;
 using MTCG_Server.API.RouteCommands.Packages;
 using MTCG_Server.API.RouteCommands.Cards;
 using MTCG_Server.API.RouteCommands.Battles;
 using MTCG_Server.BattleClasses;
 
-namespace SWE1.MTCG.API.RouteCommands
+namespace MTCG_Server.MTCG.API.RouteCommands
 {
+    class BattleLobby_Mutex
+    {
+        public static Mutex BattleMutex = new Mutex();
+    };
     internal class Router : IRouter
     {
         private readonly IUserManager _userManager;
@@ -26,7 +28,7 @@ namespace SWE1.MTCG.API.RouteCommands
         private readonly IdentityProvider _identityProvider;
         private readonly IRouteParser _routeParser = new IdRouteParser();
 
-        private List<BattleLobby> _battleLobbies = new List<BattleLobby>();
+        private List<BattleLobby> _battleLobbies;
 
         public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, List<BattleLobby> battleLobbies)
         {

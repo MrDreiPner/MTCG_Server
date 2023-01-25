@@ -1,10 +1,10 @@
-﻿using SWE1.MTCG.Core.Response;
-using SWE1.MTCG.Core.Routing;
+﻿using MTCG_Server.MTCG.Core.Response;
+using MTCG_Server.MTCG.Core.Routing;
 using System.Net;
 using System.Net.Sockets;
-using HttpClient = SWE1.MTCG.Core.Client.HttpClient;
+using HttpClient = MTCG_Server.MTCG.Core.Client.HttpClient;
 
-namespace SWE1.MTCG.Core.Server
+namespace MTCG_Server.MTCG.Core.Server
 {
     public class HttpServer : IServer
     {
@@ -12,6 +12,7 @@ namespace SWE1.MTCG.Core.Server
  
         private readonly TcpListener _listener;
         private readonly IRouter _router;
+        public Thread? clientThread;
 
         public HttpServer(IPAddress address, int port, IRouter router)
         {
@@ -27,61 +28,67 @@ namespace SWE1.MTCG.Core.Server
             while (_listening)
             {
                 var connection = _listener.AcceptTcpClient();
-                
-                // create a new disposable handler for the client connection
-                var client = new HttpClient(connection);
 
-                var request = client.ReceiveRequest();
-                Response.Response response;
+                clientThread = new Thread(() => ClientConnection(connection));
+                clientThread.Start();
+            }
+        }
 
-                if (request == null)
+        public void ClientConnection(TcpClient connection)
+        {
+            // create a new disposable handler for the client connection
+            var client = new HttpClient(connection);
+
+            var request = client.ReceiveRequest();
+            Response.Response response;
+
+            if (request == null)
+            {
+                // could not parse request
+                response = new Response.Response()
                 {
-                    // could not parse request
+                    StatusCode = StatusCode.BadRequest
+                };
+            }
+            else
+            {
+                try
+                {
+                    var command = _router.Resolve(request);
+                    if (command != null)
+                    {
+                        // found a command for this request, now execute it
+                        response = command.Execute();
+                    }
+                    else
+                    {
+
+                        // could not find a matching command for the request
+                        response = new Response.Response()
+                        {
+                            StatusCode = StatusCode.BadRequest
+                        };
+                    }
+                }
+                catch (RouteNotAuthenticatedException)
+                {
+                    Console.WriteLine("Identity returned is NULL");
                     response = new Response.Response()
                     {
-                        StatusCode = StatusCode.BadRequest
+                        StatusCode = Response.StatusCode.Unauthorized
                     };
                 }
-                else
+                catch (InvalidDataException)
                 {
-                    try
+                    response = new Response.Response()
                     {
-                        var command = _router.Resolve(request);
-                        if (command != null)
-                        {
-                            // found a command for this request, now execute it
-                            response = command.Execute();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Here 2");
-                            // could not find a matching command for the request
-                            response = new Response.Response()
-                            {
-                                StatusCode = StatusCode.BadRequest
-                            };
-                        }
-                    }
-                    catch (RouteNotAuthenticatedException)
-                    {
-                        Console.WriteLine("Identity returned is NULL");
-                        response = new Response.Response()
-                        {
-                            StatusCode = Response.StatusCode.Unauthorized
-                        };
-                    }
-                    catch (InvalidDataException)
-                    {
-                        response = new Response.Response()
-                        {
-                            StatusCode = Response.StatusCode.BadRequest
-                        };
-                    }
+                        StatusCode = Response.StatusCode.BadRequest
+                    };
                 }
-
-                client.SendResponse(response);
-                client.Close();
             }
+
+            client.SendResponse(response);
+            client.Close();
         }
 
         public void Stop()

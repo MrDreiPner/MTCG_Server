@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.Core.Response
+namespace MTCG_Server.MTCG.Core.Response
 {
     public enum StatusCode
     {

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.Core.Routing
+namespace MTCG_Server.MTCG.Core.Routing
 {
     public class RouteNotAuthenticatedException : Exception
     {

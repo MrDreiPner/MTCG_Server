@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using SWE1.MTCG.DAL;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.API.RouteCommands;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.Core.Server;
-using SWE1.MTCG.DAL;
+using MTCG_Server.MTCG.DAL;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.API.RouteCommands;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.Core.Server;
+using MTCG_Server.MTCG.DAL;
 using System.Net;
 using MTCG_Server.BattleClasses;
 

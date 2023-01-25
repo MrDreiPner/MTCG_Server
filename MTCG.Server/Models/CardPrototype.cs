@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.Models
+namespace MTCG_Server.MTCG.Models
 {
     public class CardPrototype
     {

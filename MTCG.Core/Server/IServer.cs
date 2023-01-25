@@ -1,4 +1,4 @@
-﻿namespace SWE1.MTCG.Core.Server
+﻿namespace MTCG_Server.MTCG.Core.Server
 {
     public interface IServer
     {

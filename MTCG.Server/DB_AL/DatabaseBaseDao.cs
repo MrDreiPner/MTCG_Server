@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     internal abstract class DatabaseBaseDao
     {

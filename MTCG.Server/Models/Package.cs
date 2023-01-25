@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MTCG_Server.CardTypes;
 
-namespace SWE1.MTCG.Models
+namespace MTCG_Server.MTCG.Models
 {
     internal class Package
     {

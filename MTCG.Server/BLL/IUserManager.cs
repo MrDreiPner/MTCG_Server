@@ -1,4 +1,4 @@
-﻿using SWE1.MTCG.Models;
+﻿using MTCG_Server.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.BLL
+namespace MTCG_Server.MTCG.BLL
 {
     internal interface IUserManager
     {

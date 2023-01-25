@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Q8nMfIn6FUhg2Q4e/WxQWa/0LQR94ZgYZamB90W6XSB+sQgrQzt9mXZbKifWUQakAnmzG667MiOPFMjrfm8CoA==",
+  "dgSpecHash": "7qLnLcuu7s6CO+RMy+NONsZymXJTaoNGUOHFFlg6WiDKk40gt2rsbLejw5ncMW55/JjMbK3fTAvfxZq5zKiCQA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
+  "projectFilePath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\MTCG_Server.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Matus\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Matus\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
-    "C:\\Users\\Matus\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
-    "C:\\Users\\Matus\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\porub\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\porub\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

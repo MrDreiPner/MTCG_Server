@@ -1,16 +1,15 @@
 ﻿using MTCG_Server.CardTypes;
-using SWE1.MTCG.DAL;
+using MTCG_Server.MTCG.DAL;
 using Npgsql;
-using SWE1.MTCG.API.RouteCommands.Messages;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.Models;
 using System.Data;
 using System.Linq.Expressions;
-using SWE1.MTCG.BLL;
+using MTCG_Server.MTCG.BLL;
 using MTCG_Server;
 using MTCG_Server.DeckStack;
 using System.Reflection.PortableExecutable;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     internal class DatabaseCardDao : DatabaseBaseDao, ICardDao
     {

@@ -1,7 +1,7 @@
-﻿using SWE1.MTCG.DAL;
-using SWE1.MTCG.Models;
+﻿using MTCG_Server.MTCG.DAL;
+using MTCG_Server.MTCG.Models;
 
-namespace SWE1.MTCG.BLL
+namespace MTCG_Server.MTCG.BLL
 {
     public class MessageManager : IMessageManager
     {

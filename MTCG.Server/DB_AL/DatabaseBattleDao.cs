@@ -1,16 +1,15 @@
 ﻿using MTCG_Server.CardTypes;
-using SWE1.MTCG.DAL;
+using MTCG_Server.MTCG.DAL;
 using Npgsql;
-using SWE1.MTCG.API.RouteCommands.Messages;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.Models;
 using System.Data;
 using System.Linq.Expressions;
-using SWE1.MTCG.BLL;
+using MTCG_Server.MTCG.BLL;
 using MTCG_Server.DeckStack;
 using System.Reflection.PortableExecutable;
 using MTCG_Server.Models;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     internal class DatabaseBattleDao : DatabaseBaseDao, IBattleDao
     {
@@ -68,7 +67,7 @@ namespace SWE1.MTCG.DAL
             });
         }
 
-        public BattleUser StartBattle(string username)
+        public BattleUser GetBattleUser(string username)
         {
             BattleUser player = new BattleUser();
             ExecuteWithDbConnection((connection) =>
@@ -135,6 +134,11 @@ namespace SWE1.MTCG.DAL
             });
             player.Deck = new Deck(player.Uid, cards);
             return player;
+        }
+
+        public void UpdateBattleStats(BattleResultsUser resultUser)
+        {
+            Console.WriteLine("Test");
         }
     }
 }

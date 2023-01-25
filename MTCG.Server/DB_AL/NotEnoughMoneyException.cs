@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     [Serializable]
     public class NotEnoughMoneyException : Exception

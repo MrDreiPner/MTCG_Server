@@ -1,5 +1,5 @@
 ﻿using Npgsql;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     internal class DatabaseMessageDao : DatabaseBaseDao, IMessageDao
     {

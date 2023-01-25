@@ -1,4 +1,4 @@
-﻿namespace SWE1.MTCG.Core.Response
+﻿namespace MTCG_Server.MTCG.Core.Response
 {
     public class Response
     {

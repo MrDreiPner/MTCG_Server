@@ -1,7 +1,7 @@
 ﻿using MTCG_Server;
 using Npgsql;
-using SWE1.MTCG.BLL;
-using SWE1.MTCG.Models;
+using MTCG_Server.MTCG.BLL;
+using MTCG_Server.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWE1.MTCG.DAL
+namespace MTCG_Server.MTCG.DAL
 {
     internal class DatabaseUserDao : DatabaseBaseDao, IUserDao
     {
