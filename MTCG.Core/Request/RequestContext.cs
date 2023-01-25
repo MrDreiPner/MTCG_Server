@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MTCG_Server.MTCG.Core.Request
+namespace MTCG.MTCG.Core.Request
 {
     public class RequestContext
     {

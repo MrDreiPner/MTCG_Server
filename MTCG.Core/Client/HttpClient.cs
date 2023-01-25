@@ -1,13 +1,13 @@
-﻿using MTCG_Server.MTCG.Core.Request;
+﻿using MTCG.MTCG.Core.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using HttpMethod = MTCG_Server.MTCG.Core.Request.HttpMethod;
+using HttpMethod = MTCG.MTCG.Core.Request.HttpMethod;
 
-namespace MTCG_Server.MTCG.Core.Client
+namespace MTCG.MTCG.Core.Client
 {
     public class HttpClient : IClient
     {

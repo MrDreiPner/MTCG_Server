@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.CardTypes;
+using MTCG.CardTypes;
 
-namespace MTCG_Server.MTCG.Models
+namespace MTCG.MTCG.Models
 {
-    internal class Package
+    public class Package
     {
         public List <Card> _cards { get; set; }
         public int packID { get; set; }

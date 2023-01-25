@@ -4,13 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.CardTypes
+namespace MTCG.CardTypes
 {
-    abstract class Card
+    public enum ElementID
+    {
+        normal = 1,
+        water = 2,
+        fire = 3
+    }
+    public abstract class Card
     {
         protected string _guID;
         protected string _name;
-        protected Server.ElementID _elementID;
+        protected ElementID _elementID;
         protected int _dmg;
         protected bool _inDeck;
         protected bool _inTrade;
@@ -21,7 +27,7 @@ namespace MTCG_Server.CardTypes
 
         public string GuID { get { return _guID; } }
         public string Name { get { return _name; }}
-        public Server.ElementID ElementID { get { return _elementID; } set { _elementID = value; } }
+        public ElementID ElementID { get { return _elementID; } set { _elementID = value; } }
         public int Dmg { get { return _dmg; }}
         public bool InDeck { 
             get { return _inDeck; }

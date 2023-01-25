@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.BattleClasses;
-using MTCG_Server.DeckStack;
-using MTCG_Server.Models;
+using MTCG.BattleClasses;
+using MTCG.DeckStack;
+using MTCG.Models;
 
-namespace MTCG_Server
+namespace MTCG
 {
     internal class Server
     {
@@ -19,12 +19,6 @@ namespace MTCG_Server
         public List<Thread> ThreadList { get { return threadList; } set { threadList = value; } }
 
         public Trader trader;
-        public enum ElementID
-        {
-            normal = 1,
-            water = 2,
-            fire = 3
-        }
         public Server()
         {
             abortRequest = false;

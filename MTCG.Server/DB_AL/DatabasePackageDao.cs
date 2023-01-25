@@ -1,13 +1,13 @@
-﻿using MTCG_Server.CardTypes;
-using MTCG_Server.MTCG.DAL;
+﻿using MTCG.CardTypes;
+using MTCG.MTCG.DAL;
 using Npgsql;
-using MTCG_Server.MTCG.Models;
+using MTCG.MTCG.Models;
 using System.Data;
 using System.Linq.Expressions;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server;
+using MTCG.MTCG.BLL;
+using MTCG;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     internal class DatabasePackageDao : DatabaseBaseDao, IPackageDao
     {
@@ -47,7 +47,6 @@ UPDATE cards SET packID = null WHERE ownerID = @username;
                     coins = Convert.ToInt32(reader["coins"]);
                 }
                 if(coins < 5) {
-                    Console.WriteLine("You are out of cash! Cash: " + coins);
                     throw new NotEnoughMoneyException();
                 }
                 else
@@ -74,7 +73,7 @@ UPDATE cards SET packID = null WHERE ownerID = @username;
                         string? cardname = Convert.ToString(reader["cardname"]);
                         string? id = Convert.ToString(reader["cid"]);
                         int dmg = Convert.ToInt32(reader["dmg"]);
-                        Console.WriteLine("We found card: " + cardname);
+                        //Console.WriteLine("We found card: " + cardname);
                         Card newCard;
                         if (cardname.Length < 5)
                             newCard = new Monster(id, cardname, dmg);
@@ -133,7 +132,7 @@ UPDATE cards SET packID = null WHERE ownerID = @username;
                 {
                     foreach (Card card in packContent)
                     {
-                        Console.WriteLine("Adding Card : " + card.Name + " ID: " + card.GuID + " Damage: " + card.Dmg + " Type: " + card.Type + " Element: " + card.ElementID);
+                        //Console.WriteLine("Adding Card : " + card.Name + " ID: " + card.GuID + " Damage: " + card.Dmg + " Type: " + card.Type + " Element: " + card.ElementID);
                         using var newcmd = new NpgsqlCommand(InsertCardCommand, connection);
                         newcmd.Parameters.AddWithValue("cid", card.GuID);
                         newcmd.Parameters.AddWithValue("cardname", card.Name);
@@ -143,10 +142,6 @@ UPDATE cards SET packID = null WHERE ownerID = @username;
                         newcmd.Parameters.AddWithValue("type", card.Type);
                         //cmd.Prepare();
                         int affectedRows = newcmd.ExecuteNonQuery();
-                        if (affectedRows == 1)
-                        {
-                            Console.WriteLine("We added a card!");
-                        }
                         //cmd.Dispose();
 
                     }
@@ -155,7 +150,7 @@ UPDATE cards SET packID = null WHERE ownerID = @username;
                 {
                     ExecuteWithDbConnection((connection) =>
                     {
-                        Console.WriteLine("We are deleting the Package");
+                        //Console.WriteLine("We are deleting the Package");
                         using var cmd = new NpgsqlCommand(DeleteFaultyPackageCommand, connection);
                         cmd.Parameters.AddWithValue("pid", packID);
                         var result = cmd.ExecuteNonQuery();;

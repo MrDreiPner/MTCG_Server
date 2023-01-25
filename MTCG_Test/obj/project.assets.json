@@ -1479,11 +1479,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG_Test\\MTCG_Test.csproj",
+      "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG_Test\\MTCG_Test.csproj",
       "projectName": "MTCG_Test",
-      "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG_Test\\MTCG_Test.csproj",
+      "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG_Test\\MTCG_Test.csproj",
       "packagesPath": "C:\\Users\\Matus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG_Test\\obj\\",
+      "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG_Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1504,11 +1504,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {
-              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj"
+            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj": {
+              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj"
             },
-            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\MTCG.Server.csproj": {
-              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Server\\MTCG.Server.csproj"
+            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Server\\MTCG.Server.csproj": {
+              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Server\\MTCG.Server.csproj"
             }
           }
         }

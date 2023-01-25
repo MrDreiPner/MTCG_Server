@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.Core.Request
+namespace MTCG.MTCG.Core.Request
 {
     public enum HttpMethod
     {

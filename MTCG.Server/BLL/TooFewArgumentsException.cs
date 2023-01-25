@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MTCG_Server.MTCG.BLL
+namespace MTCG.MTCG.BLL
 {
     [Serializable]
     public class TooFewArgumentsException : Exception

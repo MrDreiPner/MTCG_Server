@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {}
+    "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {
+    "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj",
         "projectName": "MTCG.Core",
-        "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj",
+        "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj",
         "packagesPath": "C:\\Users\\Matus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG.Core\\obj\\",
+        "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

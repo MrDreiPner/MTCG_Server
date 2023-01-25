@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.CardTypes;
+using MTCG.CardTypes;
 
-namespace MTCG_Server
+namespace MTCG
 {
     internal class Trader
     {

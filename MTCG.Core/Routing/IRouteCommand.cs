@@ -1,4 +1,4 @@
-﻿namespace MTCG_Server.MTCG.Core.Routing
+﻿namespace MTCG.MTCG.Core.Routing
 {
     public interface IRouteCommand
     {

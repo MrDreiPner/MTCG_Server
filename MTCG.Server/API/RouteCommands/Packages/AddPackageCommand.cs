@@ -1,16 +1,16 @@
-﻿using MTCG_Server.MTCG.API.RouteCommands;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Core.Response;
-using MTCG_Server.MTCG.Models;
-using MTCG_Server.CardTypes;
+﻿using MTCG.MTCG.API.RouteCommands;
+using MTCG.MTCG.BLL;
+using MTCG.MTCG.Core.Response;
+using MTCG.MTCG.Models;
+using MTCG.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.MTCG.DAL;
+using MTCG.MTCG.DAL;
 
-namespace MTCG_Server.API.RouteCommands.Packages
+namespace MTCG.API.RouteCommands.Packages
 {
     internal class AddPackageCommand : AuthenticatedRouteCommand
     {
@@ -19,7 +19,6 @@ namespace MTCG_Server.API.RouteCommands.Packages
 
         public AddPackageCommand(IPackageManager packageManager, User identity, List<CardPrototype> cards) : base(identity)
         {
-            Console.WriteLine("Building Deck command aufgerufen");
             if (Identity.Username != null)
             {
                 _packageManager = packageManager;
@@ -47,7 +46,6 @@ namespace MTCG_Server.API.RouteCommands.Packages
                     }
 
                     _cards.Add(newCard);
-                    Console.WriteLine("Card passed: " + card.Name + " ID: " + card.Id + " Damage: " + card.Damage);
                 }
             }
         }
@@ -59,7 +57,6 @@ namespace MTCG_Server.API.RouteCommands.Packages
             {
                 if (Identity.Username == "admin")
                 {
-                    Console.WriteLine("We are in as admins");
                     Package newPackage = _packageManager.AddPackage(_cards);
                     response.StatusCode = StatusCode.Ok;
                     /*foreach(Card card in newPackage._cards)

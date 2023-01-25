@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.CardTypes;
-using MTCG_Server.DeckStack;
-using MTCG_Server.Models;
-using MTCG_Server.MTCG.Models;
+using MTCG.CardTypes;
+using MTCG.DeckStack;
+using MTCG.Models;
+using MTCG.MTCG.Models;
 
-namespace MTCG_Server.BattleClasses
+namespace MTCG.BattleClasses
 {
-    internal class BattleLobby
+    public class BattleLobby
     {
         private static Random rand = new Random();
         private BattleUser player1;
@@ -21,6 +21,7 @@ namespace MTCG_Server.BattleClasses
         private Deck? player2Deck;
         private string? _battleLog;
         public BattleResults battleResults;
+        public int pickedUpBattleresults;
 
         private bool lobbyDone;
         private int _checkLobbyDone;
@@ -37,6 +38,7 @@ namespace MTCG_Server.BattleClasses
             _battleLog = "";
             lobbyDone= false;
             _checkLobbyDone = 0;
+            pickedUpBattleresults = 0;
         }
 
         public void AddPlayer1(object player1)
@@ -45,7 +47,6 @@ namespace MTCG_Server.BattleClasses
             player1Name = this.player1.Username;
             player1Deck = this.player1.Deck;
             _playerCount++;
-            //player1Deck.PrintDeck();
         }
         public void AddPlayer2(object player2)
         {
@@ -53,12 +54,12 @@ namespace MTCG_Server.BattleClasses
             this.player2 = (BattleUser) player2;
             player2Name = this.player2.Username;
             player2Deck = this.player2.Deck;
-            //player2Deck.PrintDeck();
         }
         public void StartCombat()
         {
             int result;
             int roundCounter = 0;
+            //Battle Starts
             while (true)
             {
                 result = 0;
@@ -68,11 +69,9 @@ namespace MTCG_Server.BattleClasses
                     break;
                 }
                 _battleLog += "!!============ TURN " + roundCounter + " STARTED ============!!\n";
-                //Console.WriteLine("------ Turn " + roundCounter + " start ------");
+                //Both players draw a card
                 Card battleCardP1 = DrawCard(player1Deck);
-                //Console.WriteLine(player1Name+" randomly drew card : "+ battleCardP1.Name);
                 Card battleCardP2 = DrawCard(player2Deck);
-                //Console.WriteLine(player2Name + " randomly drew card : " + battleCardP2.Name);
                 BattleLogic newRound = new BattleLogic(ref battleCardP1, ref battleCardP2, player1Name, player2Name);
                 result = newRound.Fight(ref _battleLog, roundCounter);
                 if (result == 1)
@@ -88,8 +87,6 @@ namespace MTCG_Server.BattleClasses
                         }
                     }
                     player2Deck.RemoveCard(counter);
-                    //player1Deck.PrintDeck();
-                    //player2Deck.PrintDeck();
                 }
                 else if(result == 2)
                 {
@@ -104,8 +101,6 @@ namespace MTCG_Server.BattleClasses
                         }
                     }
                     player1Deck.RemoveCard(counter);
-                    //player1Deck.PrintDeck();
-                    //player2Deck.PrintDeck();
                 }
                 else if(result == 0)
                 {
@@ -113,22 +108,31 @@ namespace MTCG_Server.BattleClasses
                 }
                 newRound = null;
             }
-            //Console.WriteLine(_battleLog);
             int winner;
             if ((player1Deck.Size > player2Deck.Size) && roundCounter <= 100)
+            {
+                _battleLog = "!! " + player1.Username + " HAS WON !!\n" + _battleLog;
                 winner = 1;
+            }
             else if ((player1Deck.Size < player2Deck.Size) && roundCounter <= 100)
+            {
+                _battleLog = "!! " + player2.Username + " HAS WON !!\n" + _battleLog;
                 winner = 2;
+            }
             else
+            {
+                _battleLog = "!! THIS MATCH IS A DRAW !!\n" + _battleLog;
                 winner = 3;
+            }
 
-            CaclulateNewELO(winner);
-            //CleanUp();
+            if(winner != 3)
+                CaclulateNewELO(winner);
             battleResults = new BattleResults(_battleLog, player1.Elo, player1.Wins, player1.Losses, player2.Elo, player2.Wins, player2.Losses);
             lobbyDone = true;
         }
         private void CaclulateNewELO(int winner)
         {
+
             double diff = Math.Abs((double)player1.Elo - (double)player2.Elo)/100;
             if (diff < 0.5)
                 diff = 0.5;
@@ -137,7 +141,7 @@ namespace MTCG_Server.BattleClasses
             double points = 10 * diff;
             if(winner == 1)
             {
-                if (player1.Elo > player2.Elo + 50)
+                if (player1.Elo > player2.Elo)
                 {
                     player1.Elo = player1.Elo + (int)points / 2;
                     player2.Elo = player2.Elo - (int)points / 2;
@@ -147,10 +151,12 @@ namespace MTCG_Server.BattleClasses
                     player1.Elo = player1.Elo + (int)points;
                     player2.Elo = player2.Elo - (int)points;
                 }
+                player1.Wins++;
+                player2.Losses++;
             }
             else if(winner == 2)
             {
-                if(player1.Elo + 50 < player2.Elo)
+                if(player1.Elo < player2.Elo)
                 {
                     player2.Elo = player2.Elo + (int)points / 2;
                     player1.Elo = player1.Elo - (int)points / 2;
@@ -160,8 +166,9 @@ namespace MTCG_Server.BattleClasses
                     player2.Elo = player2.Elo + (int)points;
                     player1.Elo = player1.Elo - (int)points;
                 }
+                player2.Wins++;
+                player1.Losses++;
             }
-            Console.WriteLine("New ELO:\n" + player1.Username + ": " + player1.Elo + "\n" + player2.Username + ": " + player2.Elo+"\n!The Battle is over!");
         }
 
         private Card DrawCard(Deck Deck)
@@ -182,37 +189,6 @@ namespace MTCG_Server.BattleClasses
                 Console.WriteLine(ex.ToString());
             }
             return null;
-        }
-
-        private void CleanUp()
-        {
-            while (player1Deck.Size != 4 && player2Deck.Size != 4)
-            {
-                SwapCards(player1Deck, player2Deck);
-                SwapCards(player2Deck, player1Deck);
-            }
-        }
-
-        private void SwapCards(Deck Deck1, Deck Deck2)
-        {
-            Card? tmpCard = null;
-            int counter = 0;
-            bool foundOwner = false;
-            foreach (Card card in Deck1.DeckCards)
-            {
-                counter++;
-                if (card.OwnerID != Deck1.OwnerID)
-                {
-                    tmpCard = card;
-                    foundOwner = true;
-                    break;
-                }
-            }
-            if (foundOwner)
-            {
-                Deck2.AddCard(tmpCard);
-                Deck1.RemoveCard(counter);
-            }
         }
     }
 }

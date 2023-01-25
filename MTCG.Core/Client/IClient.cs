@@ -1,6 +1,6 @@
-﻿using MTCG_Server.MTCG.Core.Request;
+﻿using MTCG.MTCG.Core.Request;
 
-namespace MTCG_Server.MTCG.Core.Client
+namespace MTCG.MTCG.Core.Client
 {
     public interface IClient
     {

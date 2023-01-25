@@ -1,19 +1,19 @@
-﻿using MTCG_Server.MTCG.Models;
-using MTCG_Server.CardTypes;
+﻿using MTCG.MTCG.Models;
+using MTCG.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.Models;
+using MTCG.Models;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     internal interface IBattleDao
     {
         public UserStats ShowUserStats(string username);
         public List<UserStats> ShowScoreboard();
         public BattleUser GetBattleUser(string username);
-        public void UpdateBattleStats(BattleResultsUser resultUser);
+        public void UpdateBattleStats(string username, BattleResultsUser resultUser);
     }
 }

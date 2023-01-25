@@ -1,6 +1,6 @@
-﻿using MTCG_Server.MTCG.Core.Request;
+﻿using MTCG.MTCG.Core.Request;
 
-namespace MTCG_Server.MTCG.Core.Routing
+namespace MTCG.MTCG.Core.Routing
 {
     public interface IRouter
     {

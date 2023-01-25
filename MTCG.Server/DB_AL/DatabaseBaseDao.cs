@@ -1,8 +1,8 @@
 ﻿using Npgsql;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
-    internal abstract class DatabaseBaseDao
+    public abstract class DatabaseBaseDao
     {
         private readonly string _connectionString;
 

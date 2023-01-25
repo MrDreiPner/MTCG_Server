@@ -1,14 +1,14 @@
-﻿using MTCG_Server.MTCG.Models;
-using MTCG_Server.CardTypes;
+﻿using MTCG.MTCG.Models;
+using MTCG.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
-    internal interface ICardDao
+    public interface ICardDao
     {
         List<Card>? ShowCards(string username);
         List<Card>? ShowDeck(string username);

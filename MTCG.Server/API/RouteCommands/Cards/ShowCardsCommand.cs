@@ -1,17 +1,17 @@
-﻿using MTCG_Server.MTCG.API.RouteCommands;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Core.Response;
-using MTCG_Server.MTCG.Models;
-using MTCG_Server.CardTypes;
+﻿using MTCG.MTCG.API.RouteCommands;
+using MTCG.MTCG.BLL;
+using MTCG.MTCG.Core.Response;
+using MTCG.MTCG.Models;
+using MTCG.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.MTCG.DAL;
+using MTCG.MTCG.DAL;
 using Newtonsoft.Json;
 
-namespace MTCG_Server.API.RouteCommands.Cards
+namespace MTCG.API.RouteCommands.Cards
 {
     internal class ShowCardsCommand : AuthenticatedRouteCommand
     {

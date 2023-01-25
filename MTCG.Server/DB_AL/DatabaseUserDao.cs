@@ -1,7 +1,7 @@
-﻿using MTCG_Server;
+﻿using MTCG;
 using Npgsql;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Models;
+using MTCG.MTCG.BLL;
+using MTCG.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     internal class DatabaseUserDao : DatabaseBaseDao, IUserDao
     {
@@ -68,7 +68,6 @@ namespace MTCG_Server.MTCG.DAL
         {
             return ExecuteWithDbConnection((connection) =>
             {
-                Console.WriteLine("We are about to deal with DB");
                 using var cmd = new NpgsqlCommand(UpdateUserCommand, connection);
                 cmd.Parameters.AddWithValue("username", username);
                 cmd.Parameters.AddWithValue("name", userContent.Name);
@@ -78,7 +77,6 @@ namespace MTCG_Server.MTCG.DAL
                 // take the first row, if any
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    Console.WriteLine("We edited!");
                     return true;
                 }
                 return false;

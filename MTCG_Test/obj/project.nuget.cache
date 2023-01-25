@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xQ1HV7UDbxmscAC4UaV0v4IlW/0ScBjRyG48uqyCphJ5ejmLGI4/p6G0jEDcruGbwnEAT/cSG+BWdPckKwtHpA==",
+  "dgSpecHash": "4szZoeT07jwOcyTJUvsbh41csBK0/QzYLSuT/KeV/0b6shgTWrXFmQmUx49qe8xlTKohMr+WL4kdmOyh/JdqVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Server\\MTCG_Test\\MTCG_Test.csproj",
+  "projectFilePath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG_Test\\MTCG_Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matus\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Matus\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

@@ -1,17 +1,17 @@
-﻿using MTCG_Server.CardTypes;
-using MTCG_Server.MTCG.DAL;
+﻿using MTCG.CardTypes;
+using MTCG.MTCG.DAL;
 using Npgsql;
-using MTCG_Server.MTCG.Models;
+using MTCG.MTCG.Models;
 using System.Data;
 using System.Linq.Expressions;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server;
-using MTCG_Server.DeckStack;
+using MTCG.MTCG.BLL;
+using MTCG;
+using MTCG.DeckStack;
 using System.Reflection.PortableExecutable;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
-    internal class DatabaseCardDao : DatabaseBaseDao, ICardDao
+    public class DatabaseCardDao : DatabaseBaseDao, ICardDao
     {
         private const string GetUserCardsCommand = "SELECT * FROM cards WHERE ownerid = @username";
         private const string GetUserDeckCommand = "SELECT * FROM cards WHERE ownerid = @username AND inDeck = true";
@@ -39,7 +39,7 @@ namespace MTCG_Server.MTCG.DAL
                         string? cardname = Convert.ToString(reader["cardname"]);
                         string? id = Convert.ToString(reader["cid"]);
                         int dmg = Convert.ToInt32(reader["dmg"]);
-                        Console.WriteLine("We found card: " + cardname);
+                        //Console.WriteLine("We found card: " + cardname);
                         Card newCard;
                         if (cardname.Length < 5)
                             newCard = new Monster(id, cardname, dmg);
@@ -83,7 +83,7 @@ namespace MTCG_Server.MTCG.DAL
                         string? cardname = Convert.ToString(reader["cardname"]);
                         string? id = Convert.ToString(reader["cid"]);
                         int dmg = Convert.ToInt32(reader["dmg"]);
-                        Console.WriteLine("We found card: " + cardname);
+                        //Console.WriteLine("We found card: " + cardname);
                         Card newCard;
                         if (cardname.Length < 5)
                             newCard = new Monster(id, cardname, dmg);
@@ -182,7 +182,7 @@ namespace MTCG_Server.MTCG.DAL
                         string? cardname = Convert.ToString(reader["cardname"]);
                         string? id = Convert.ToString(reader["cid"]);
                         int dmg = Convert.ToInt32(reader["dmg"]);
-                        Console.WriteLine("We found card: " + cardname);
+                        //Console.WriteLine("We found card: " + cardname);
                         Card newCard;
                         if (cardname.Length < 5)
                             newCard = new Monster(id, cardname, dmg);

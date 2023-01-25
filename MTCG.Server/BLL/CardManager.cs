@@ -1,16 +1,16 @@
-﻿using MTCG_Server.MTCG.Models;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.DAL;
-using MTCG_Server.CardTypes;
+﻿using MTCG.MTCG.Models;
+using MTCG.MTCG.BLL;
+using MTCG.MTCG.DAL;
+using MTCG.CardTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.BLL
+namespace MTCG.MTCG.BLL
 {
-    internal class CardManager : ICardManager
+    public class CardManager : ICardManager
     {
         private readonly ICardDao _cardDao;
 

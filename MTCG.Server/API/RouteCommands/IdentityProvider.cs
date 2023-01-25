@@ -1,8 +1,8 @@
-﻿using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Core.Request;
-using MTCG_Server.MTCG.Models;
+﻿using MTCG.MTCG.BLL;
+using MTCG.MTCG.Core.Request;
+using MTCG.MTCG.Models;
 
-namespace MTCG_Server.MTCG.API.RouteCommands
+namespace MTCG.MTCG.API.RouteCommands
 {
     internal class IdentityProvider
     {

@@ -1,18 +1,18 @@
-﻿using MTCG_Server.MTCG.BLL;
+﻿using MTCG.MTCG.BLL;
 using Newtonsoft.Json;
-using MTCG_Server.MTCG.API.RouteCommands.Users;
-using MTCG_Server.CardTypes;
-using MTCG_Server.MTCG.Core.Request;
-using MTCG_Server.MTCG.Core.Routing;
-using MTCG_Server.MTCG.Models;
+using MTCG.MTCG.API.RouteCommands.Users;
+using MTCG.CardTypes;
+using MTCG.MTCG.Core.Request;
+using MTCG.MTCG.Core.Routing;
+using MTCG.MTCG.Models;
 using System.IO;
-using HttpMethod = MTCG_Server.MTCG.Core.Request.HttpMethod;
-using MTCG_Server.API.RouteCommands.Packages;
-using MTCG_Server.API.RouteCommands.Cards;
-using MTCG_Server.API.RouteCommands.Battles;
-using MTCG_Server.BattleClasses;
+using HttpMethod = MTCG.MTCG.Core.Request.HttpMethod;
+using MTCG.API.RouteCommands.Packages;
+using MTCG.API.RouteCommands.Cards;
+using MTCG.API.RouteCommands.Battles;
+using MTCG.BattleClasses;
 
-namespace MTCG_Server.MTCG.API.RouteCommands
+namespace MTCG.MTCG.API.RouteCommands
 {
     class BattleLobby_Mutex
     {
@@ -21,19 +21,15 @@ namespace MTCG_Server.MTCG.API.RouteCommands
     internal class Router : IRouter
     {
         private readonly IUserManager _userManager;
-        private readonly IMessageManager _messageManager;
         private readonly IPackageManager _packageManager;
         private readonly ICardManager _cardManager;
         private readonly IBattleManager _battleManager;
         private readonly IdentityProvider _identityProvider;
         private readonly IRouteParser _routeParser = new IdRouteParser();
-
         private List<BattleLobby> _battleLobbies;
-
-        public Router(IUserManager userManager, IMessageManager messageManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, List<BattleLobby> battleLobbies)
+        public Router(IUserManager userManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, List<BattleLobby> battleLobbies)
         {
             _userManager = userManager;
-            _messageManager = messageManager;
             _packageManager = packageManager;
             _cardManager = cardManager;
             _battleManager = battleManager;
@@ -73,12 +69,6 @@ namespace MTCG_Server.MTCG.API.RouteCommands
                 { Method: HttpMethod.Get, ResourcePath: "/stats" } => new ShowUserStatsCommand(_battleManager, identity(request)),
                 { Method: HttpMethod.Get, ResourcePath: "/score" } => new ShowScoreboardCommand(_battleManager, identity(request)),
                 { Method: HttpMethod.Post, ResourcePath: "/battles" } => new StartBattleCommand(_battleManager, identity(request), _battleLobbies),
-                //{ Method: HttpMethod.Post, ResourcePath: "/messages"} => new AddMessageCommand(_messageManager, identity(request), EnsureBody(request.Payload)),
-                //{ Method: HttpMethod.Get, ResourcePath: "/messages" } => new ListMessagesCommand(_messageManager, identity(request)),
-
-                //{ Method: HttpMethod.Get, ResourcePath: var path} when isMatch(path) => new ShowMessageCommand(_messageManager, identity(request), parseId(path)),
-                //{ Method: HttpMethod.Put, ResourcePath: var path } when isMatch(path) => new UpdateMessageCommand(_messageManager, identity(request), parseId(path), EnsureBody(request.Payload)),
-                //{ Method: HttpMethod.Delete, ResourcePath: var path } when isMatch(path) => new RemoveMessageCommand(_messageManager, identity(request), parseId(path)),
 
                 _ => null
             };

@@ -1,4 +1,4 @@
-﻿using MTCG_Server.MTCG.DAL;
+﻿using MTCG.MTCG.DAL;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     internal class Database
     {
@@ -18,8 +18,6 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
 ";
         //CREATE TYPE element_id AS ENUM ('water', 'fire', 'normal');
 
-
-        public IMessageDao MessageDao { get; private set; }
         public IUserDao UserDao { get; private set; }
         public IPackageDao PackageDao { get; private set; }
         public ICardDao CardDao { get; private set; }
@@ -43,7 +41,6 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
                 }
 
                 UserDao = new DatabaseUserDao(connectionString);
-                MessageDao = new DatabaseMessageDao(connectionString);
                 PackageDao = new DatabasePackageDao(connectionString);
                 CardDao = new DatabaseCardDao(connectionString);
                 BattleDao = new DatabaseBattleDao(connectionString);
@@ -61,7 +58,6 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
             connection.Open();
             using var cmd = new NpgsqlCommand(CreateTablesCommand, connection);
             int check = cmd.ExecuteNonQuery();
-            Console.WriteLine("Number of rows affected: " + check);
         }
     }
 }

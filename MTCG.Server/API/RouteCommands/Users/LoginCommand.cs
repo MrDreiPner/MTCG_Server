@@ -1,9 +1,9 @@
-﻿using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Core.Response;
-using MTCG_Server.MTCG.Core.Routing;
-using MTCG_Server.MTCG.Models;
+﻿using MTCG.MTCG.BLL;
+using MTCG.MTCG.Core.Response;
+using MTCG.MTCG.Core.Routing;
+using MTCG.MTCG.Models;
 
-namespace MTCG_Server.MTCG.API.RouteCommands.Users
+namespace MTCG.MTCG.API.RouteCommands.Users
 {
     internal class LoginCommand : IRouteCommand
     {

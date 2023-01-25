@@ -1,10 +1,10 @@
-﻿using MTCG_Server.MTCG.Core.Response;
-using MTCG_Server.MTCG.Core.Routing;
+﻿using MTCG.MTCG.Core.Response;
+using MTCG.MTCG.Core.Routing;
 using System.Net;
 using System.Net.Sockets;
-using HttpClient = MTCG_Server.MTCG.Core.Client.HttpClient;
+using HttpClient = MTCG.MTCG.Core.Client.HttpClient;
 
-namespace MTCG_Server.MTCG.Core.Server
+namespace MTCG.MTCG.Core.Server
 {
     public class HttpServer : IServer
     {

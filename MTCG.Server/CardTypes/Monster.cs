@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.CardTypes
+namespace MTCG.CardTypes
 {
-    internal class Monster : Card
+    public class Monster : Card
     {
         public Monster(string guID, string name, int dmg)
         {
@@ -15,20 +15,19 @@ namespace MTCG_Server.CardTypes
             if(name.Length >= 5)
             {
                 if (name.Substring(0, 5) == "Water" || name == "Kraken")
-                    _elementID = Server.ElementID.water;
+                    _elementID = CardTypes.ElementID.water;
                 else if (name.Substring(0, 4) == "Fire" || name == "Dragon")
-                    _elementID = Server.ElementID.fire;
+                    _elementID = CardTypes.ElementID.fire;
                 else
-                    _elementID = Server.ElementID.normal;
+                    _elementID = CardTypes.ElementID.normal;
 
             }
             else
             {
-                _elementID = Server.ElementID.normal;
+                _elementID = CardTypes.ElementID.normal;
             }
             _dmg = dmg;
             _type = "Monster";
-            //Console.WriteLine("Monster is created");
         }
         ~Monster() 
         { 

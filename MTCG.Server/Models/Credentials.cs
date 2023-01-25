@@ -1,4 +1,4 @@
-﻿namespace MTCG_Server.MTCG.Models
+﻿namespace MTCG.MTCG.Models
 {
     public class Credentials
     {

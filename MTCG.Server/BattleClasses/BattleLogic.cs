@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.CardTypes;
+using MTCG.CardTypes;
 
-namespace MTCG_Server.BattleClasses
+namespace MTCG.BattleClasses
 {
-    internal class BattleLogic
+    public class BattleLogic
     {
         private string player1Name;
         private string player2Name;
@@ -27,61 +27,61 @@ namespace MTCG_Server.BattleClasses
             {
                 if (cardPlayer1.Dmg > cardPlayer2.Dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by "+player1Name+ "! " + cardPlayer1.Type +" "+cardPlayer1.Name + " dealt "+ cardPlayer1.Dmg +" damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + cardPlayer2.Dmg+ " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by "+player1Name+ "! " + player1Name + "'s " + cardPlayer1.Type +" "+cardPlayer1.Name + " dealt "+ cardPlayer1.Dmg + " damage against " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + cardPlayer2.Dmg+ " damage!\n";
                     return 1;
                 }
                 else if (cardPlayer1.Dmg < cardPlayer2.Dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + cardPlayer2.Dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + cardPlayer1.Dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + cardPlayer2.Dmg + " damage against " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + cardPlayer1.Dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + " both dealt " + cardPlayer1.Dmg+" damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + " both dealt " + cardPlayer1.Dmg+" damage!\n";
                     return 3;
                 }
             }
-            else if((cardPlayer1.ElementID == Server.ElementID.normal && cardPlayer2.ElementID == Server.ElementID.water)
-                    || (cardPlayer1.ElementID == Server.ElementID.water && cardPlayer2.ElementID == Server.ElementID.fire)
-                    || (cardPlayer1.ElementID == Server.ElementID.fire && cardPlayer2.ElementID == Server.ElementID.normal))
+            else if((cardPlayer1.ElementID == CardTypes.ElementID.normal && cardPlayer2.ElementID == CardTypes.ElementID.water)
+                    || (cardPlayer1.ElementID == CardTypes.ElementID.water && cardPlayer2.ElementID == CardTypes.ElementID.fire)
+                    || (cardPlayer1.ElementID == CardTypes.ElementID.fire && cardPlayer2.ElementID == CardTypes.ElementID.normal))
             {
                 int CP1dmg = cardPlayer1.Dmg * 2;
                 int CP2dmg = cardPlayer2.Dmg / 2;
                 if (CP1dmg > CP2dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
                     return 1;
                 }
                 else if (CP1dmg < CP2dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
                     return 3;
                 }
             }
-            else if ((cardPlayer2.ElementID == Server.ElementID.normal && cardPlayer1.ElementID == Server.ElementID.water)
-                    || (cardPlayer2.ElementID == Server.ElementID.water && cardPlayer1.ElementID == Server.ElementID.fire)
-                    || (cardPlayer2.ElementID == Server.ElementID.fire && cardPlayer1.ElementID == Server.ElementID.normal))
+            else if ((cardPlayer2.ElementID == CardTypes.ElementID.normal && cardPlayer1.ElementID == CardTypes.ElementID.water)
+                    || (cardPlayer2.ElementID == CardTypes.ElementID.water && cardPlayer1.ElementID == CardTypes.ElementID.fire)
+                    || (cardPlayer2.ElementID == CardTypes.ElementID.fire && cardPlayer1.ElementID == CardTypes.ElementID.normal))
             {
                 int CP2dmg = cardPlayer2.Dmg * 2;
                 int CP1dmg = cardPlayer1.Dmg / 2;
                 if (CP1dmg > CP2dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player1Name + "! " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + " dealt " + CP1dmg + " damage against " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + "'s " + CP2dmg + " damage!\n";
                     return 1;
                 }
                 else if (CP1dmg < CP2dmg)
                 {
-                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was won by " + player2Name + "! " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + " dealt " + CP2dmg + " damage against " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + "'s " + CP1dmg + " damage!\n";
                     return 2;
                 }
                 else
                 {
-                    battleLog += "Turn " + roundCounter + " was a tie! " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
+                    battleLog += "Turn " + roundCounter + " was a tie! " + player1Name + "'s " + cardPlayer1.Type + " " + cardPlayer1.Name + " and " + player2Name + "'s " + cardPlayer2.Type + " " + cardPlayer2.Name + ", both dealt " + CP2dmg + " damage!\n";
                     return 3;
                 }
             }

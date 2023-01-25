@@ -1,15 +1,16 @@
-﻿using MTCG_Server.CardTypes;
-using MTCG_Server.MTCG.DAL;
+﻿using MTCG.CardTypes;
+using MTCG.MTCG.DAL;
 using Npgsql;
-using MTCG_Server.MTCG.Models;
+using MTCG.MTCG.Models;
 using System.Data;
 using System.Linq.Expressions;
-using MTCG_Server.MTCG.BLL;
-using MTCG_Server.DeckStack;
+using MTCG.MTCG.BLL;
+using MTCG.DeckStack;
 using System.Reflection.PortableExecutable;
-using MTCG_Server.Models;
+using MTCG.Models;
+using System.Numerics;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     internal class DatabaseBattleDao : DatabaseBaseDao, IBattleDao
     {
@@ -17,6 +18,7 @@ namespace MTCG_Server.MTCG.DAL
         private const string ShowScoreboardCommand = "SELECT username, elo, wins, losses FROM users WHERE username != 'admin' ORDER BY elo DESC";
         private const string GetPlayerCommand = "SELECT * FROM users WHERE username = @username";
         private const string GetPlayerDeckCommand = "SELECT * FROM cards WHERE ownerid = @username AND inDeck = true";
+        private const string UpdateStatsCommand = "UPDATE users SET elo = @elo, wins = @wins, losses = @losses WHERE username = @username";
         public DatabaseBattleDao(string connectionString) : base(connectionString)
         {
         }
@@ -90,7 +92,6 @@ namespace MTCG_Server.MTCG.DAL
                 }
                 return player;
             });
-            Console.WriteLine("Passed Player for battle is: " + player.Uid + " their name is: "+ player.Username +" with ELO: " + player.Elo);
             
             List<Card> cards = new List<Card>();
             ExecuteWithDbConnection((connection) =>
@@ -107,7 +108,7 @@ namespace MTCG_Server.MTCG.DAL
                         string? cardname = Convert.ToString(reader["cardname"]);
                         string? id = Convert.ToString(reader["cid"]);
                         int dmg = Convert.ToInt32(reader["dmg"]);
-                        Console.WriteLine("We found card: " + cardname);
+                        //Console.WriteLine("We found card: " + cardname);
                         Card newCard;
                         if (cardname.Length < 5)
                             newCard = new Monster(id, cardname, dmg);
@@ -136,9 +137,20 @@ namespace MTCG_Server.MTCG.DAL
             return player;
         }
 
-        public void UpdateBattleStats(BattleResultsUser resultUser)
+        public void UpdateBattleStats(string username, BattleResultsUser resultUser)
         {
-            Console.WriteLine("Test");
+            ExecuteWithDbConnection((connection) =>
+            {
+                using var cmd = new NpgsqlCommand(UpdateStatsCommand, connection);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("elo", resultUser._newElo);
+                cmd.Parameters.AddWithValue("wins", resultUser._wins);
+                cmd.Parameters.AddWithValue("losses", resultUser._losses);
+                Console.WriteLine("Updating user " + username);
+                if(cmd.ExecuteNonQuery() != 1)
+                    throw new DataAccessFailedException();
+                return 0;
+            });
         }
     }
 }

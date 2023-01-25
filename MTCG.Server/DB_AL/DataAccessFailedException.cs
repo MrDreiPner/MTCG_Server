@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MTCG_Server.MTCG.DAL
+namespace MTCG.MTCG.DAL
 {
     [Serializable]
     internal class DataAccessFailedException : Exception

@@ -1,12 +1,12 @@
-﻿using MTCG_Server.MTCG.DAL;
-using MTCG_Server.MTCG.Models;
+﻿using MTCG.MTCG.DAL;
+using MTCG.MTCG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTCG_Server.MTCG.BLL
+namespace MTCG.MTCG.BLL
 {
     public class UserManager : IUserManager
     {
@@ -19,7 +19,6 @@ namespace MTCG_Server.MTCG.BLL
 
         public void UpdateUser(User user, UserContent userContent, string userToUpdate)
         {
-            Console.WriteLine("We are here - user to update: " + userToUpdate);
             if (_userDao.UpdateUser(userToUpdate, userContent) == false)
                 throw new UserNotFoundException();
         }

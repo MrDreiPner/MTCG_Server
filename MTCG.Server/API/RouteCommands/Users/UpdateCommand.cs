@@ -1,10 +1,10 @@
-﻿using MTCG_Server.MTCG.BLL;
-using MTCG_Server.MTCG.Core.Response;
-using MTCG_Server.MTCG.Core.Routing;
-using MTCG_Server.MTCG.Models;
+﻿using MTCG.MTCG.BLL;
+using MTCG.MTCG.Core.Response;
+using MTCG.MTCG.Core.Routing;
+using MTCG.MTCG.Models;
 using System.Security.Principal;
 
-namespace MTCG_Server.MTCG.API.RouteCommands.Users
+namespace MTCG.MTCG.API.RouteCommands.Users
 {
     internal class UpdateCommand : AuthenticatedRouteCommand
     {
@@ -14,7 +14,6 @@ namespace MTCG_Server.MTCG.API.RouteCommands.Users
 
         public UpdateCommand(IUserManager userManager, User identity, UserContent userContent, string username) : base(identity)
         {
-            Console.WriteLine("Update command aufgerufen");
             _userManager = userManager;
             _userContent = userContent;
             _passedUsername = username;

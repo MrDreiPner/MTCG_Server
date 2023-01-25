@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.CardTypes;
+using MTCG.CardTypes;
 
-namespace MTCG_Server.DeckStack
+namespace MTCG.DeckStack
 {
-    internal class Deck
+    public class Deck
     {
         protected int size;
         protected List<Card>? deckCards;
@@ -23,7 +23,6 @@ namespace MTCG_Server.DeckStack
             DeckCards = incomingDeck;
             size = DeckCards.Count();
             _ownerID = ownerID;
-            Console.WriteLine("OwnerID of this Deck: " + _ownerID + " with " + size + " cards\n");
         }
         public void AddCard(Card newCard)
         {
@@ -54,7 +53,7 @@ namespace MTCG_Server.DeckStack
             foreach (Card card in DeckCards)
             {
                 counter++;
-                string? elemetType = Enum.GetName(typeof(Server.ElementID),card.ElementID);
+                string? elemetType = Enum.GetName(typeof(CardTypes.ElementID),card.ElementID);
                 Console.WriteLine(counter + ". " + card.Name + " - ID: " + card.GuID+" | Element Type+ID: "+elemetType + " " + card.ElementID+" | OwnerID: "+card.OwnerID);
             }
             Console.WriteLine("Size of Deck: " + size + "\nOwnerID of this Deck: " + _ownerID);

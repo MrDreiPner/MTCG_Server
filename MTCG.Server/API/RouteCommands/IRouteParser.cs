@@ -1,7 +1,7 @@
-﻿using MTCG_Server.MTCG.Core.Request;
-using HttpMethod = MTCG_Server.MTCG.Core.Request.HttpMethod;
+﻿using MTCG.MTCG.Core.Request;
+using HttpMethod = MTCG.MTCG.Core.Request.HttpMethod;
 
-namespace MTCG_Server.MTCG.API.RouteCommands
+namespace MTCG.MTCG.API.RouteCommands
 {
     internal interface IRouteParser
     {

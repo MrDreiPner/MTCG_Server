@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.DeckStack;
+using MTCG.DeckStack;
 
-namespace MTCG_Server.Models
+namespace MTCG.Models
 {
-    internal class BattleUser
+    public class BattleUser
     {
         public string? Uid { get { return _uid; } set { _uid = value; } }
         public string? Username { get { return _username; } set { _username = value; } }

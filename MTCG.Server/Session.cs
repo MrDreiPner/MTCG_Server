@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MTCG_Server.BattleClasses;
-using MTCG_Server.DeckStack;
-using MTCG_Server.Models;
-using MTCG_Server.MTCG.Models;
-using MTCG_Server.MTCG.API.RouteCommands;
+using MTCG.BattleClasses;
+using MTCG.DeckStack;
+using MTCG.Models;
+using MTCG.MTCG.Models;
+using MTCG.MTCG.API.RouteCommands;
 using System.Net;
 
-namespace MTCG_Server
+namespace MTCG
 {
-    internal class Session
+    public class Session
     {
         //protected Trader trader;
         protected List<BattleLobby> battleLobbies;
@@ -45,13 +45,16 @@ namespace MTCG_Server
                     busyWaiting = true;
                     while (busyWaiting)
                     {
-                        Console.WriteLine("Lobby state: " + lobby.LobbyDone);
+                        //Console.WriteLine("Lobby state: " + lobby.LobbyDone);
                         if (lobby.LobbyDone)
                         {
                             //send response with lobby.Battlelog
                             busyWaiting = false;
                             BattleResults results = lobby.battleResults;
                             BattleResultsUser userResults = new BattleResultsUser(results._newEloPlayer2, results._battleLog, results._winsPlayer2, results._lossesPlayer2);
+                            BattleLobby_Mutex.BattleMutex.WaitOne();
+                            lobby.pickedUpBattleresults++;
+                            BattleLobby_Mutex.BattleMutex.ReleaseMutex();
                             Console.WriteLine(myPlayer.Username + " done waiting!");
                             return userResults;
                         }
@@ -67,17 +70,19 @@ namespace MTCG_Server
                 //BattleLobby_Mutex.BattleMutex.WaitOne();
                 BattleLobbies.Add(newLobby);
                 BattleLobby_Mutex.BattleMutex.ReleaseMutex();
-                Console.WriteLine(myPlayer.Username + " waiting in Lobby");
                 busyWaiting = true;
                 while (busyWaiting)
                 {
-                    Console.WriteLine("Lobby state: " + newLobby.LobbyDone);
+                    //Console.WriteLine("Lobby state: " + newLobby.LobbyDone);
                     if (newLobby.LobbyDone)
                     {
                         //send response with lobby.Battlelog
                         busyWaiting = false;
                         BattleResults results = newLobby.battleResults;
                         BattleResultsUser userResults = new BattleResultsUser(results._newEloPlayer1, results._battleLog, results._winsPlayer1, results._lossesPlayer1);
+                        BattleLobby_Mutex.BattleMutex.WaitOne();
+                        newLobby.pickedUpBattleresults++;
+                        BattleLobby_Mutex.BattleMutex.ReleaseMutex();
                         Console.WriteLine(myPlayer.Username + " done waiting!");
                         return userResults;
                     }
