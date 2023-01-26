@@ -14,7 +14,8 @@ namespace MTCG.MTCG.DAL
         private const string CreateTablesCommand = @"
 CREATE TABLE IF NOT EXISTS users (username varchar PRIMARY KEY, password varchar, bio varchar, image varchar, name varchar , coins numeric, elo numeric, wins numeric, losses numeric);
 CREATE TABLE IF NOT EXISTS cards (cid varchar PRIMARY KEY, cardname varchar, elementID element_id, dmg numeric, inDeck boolean, inTrade boolean, ownerID varchar, packID numeric, type varchar, CONSTRAINT owner_ID FOREIGN KEY(ownerID) REFERENCES users(username));
-CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY) 
+CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY);
+CREATE TABLE IF NOT EXISTS trades (tradeid varchar PRIMARY KEY, cid varchar UNIQUE, type varchar, minDmg numeric);
 ";
         //CREATE TYPE element_id AS ENUM ('water', 'fire', 'normal');
 
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
         public IPackageDao PackageDao { get; private set; }
         public ICardDao CardDao { get; private set; }
         public IBattleDao BattleDao { get; private set; }
+        public ITradeDao TradeDao { get; private set; }
         public Database(string connectionString)
         {
             try
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY)
                 PackageDao = new DatabasePackageDao(connectionString);
                 CardDao = new DatabaseCardDao(connectionString);
                 BattleDao = new DatabaseBattleDao(connectionString);
+                TradeDao= new DatabaseTradeDao(connectionString);
             }
             catch (NpgsqlException e)
             {

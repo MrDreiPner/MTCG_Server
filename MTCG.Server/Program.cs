@@ -16,6 +16,7 @@ var userDao = database.UserDao;
 var packageDao = database.PackageDao;
 var cardDao = database.CardDao;
 var battleDao = database.BattleDao;
+var tradeDao = database.TradeDao;
 
 // In Memory DAOs
 //var userDao = new InMemoryUserDao();
@@ -25,13 +26,14 @@ var userManager = new UserManager(userDao);
 var packageManager = new PackageManager(packageDao);
 var cardManager = new CardManager(cardDao);
 var battleManager = new BattleManager(battleDao);
+var tradeManager = new TradeManager(tradeDao);
 
 //Battle Lobbies
 List<BattleLobby> battleLobbies = new List<BattleLobby>();
 
 Thread workerThread = new Thread(new ThreadStart(MaintainLobbies));
 workerThread.Start();
-var router = new Router(userManager, packageManager, cardManager, battleManager, battleLobbies);
+var router = new Router(userManager, packageManager, cardManager, battleManager, tradeManager, battleLobbies);
 var server = new HttpServer(IPAddress.Any, 10001, router);
 server.Start();
 

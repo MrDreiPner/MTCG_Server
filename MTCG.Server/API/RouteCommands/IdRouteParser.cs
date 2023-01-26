@@ -9,6 +9,11 @@ namespace MTCG.MTCG.API.RouteCommands
             var pattern = "^" + routePattern.Replace("{username}", ".*").Replace("/", "\\/") + "(\\?.*)?$";
             return Regex.IsMatch(resourcePath, pattern);
         }
+        public bool IsIdMatch(string resourcePath, string routePattern)
+        {
+            var pattern = "^" + routePattern.Replace("{id}", ".*").Replace("/", "\\/") + "(\\?.*)?$";
+            return Regex.IsMatch(resourcePath, pattern);
+        }
 
         public Dictionary<string, string> ParseParameters(string resourcePath, string routePattern)
         {

@@ -5,16 +5,9 @@ namespace MTCG.Test
 {
     public class EloCalculationTests
     {
-
-        //Result:
-        //  1 = Tester 1 won
-        //  2 = Tester 2 won
-        //  3 = Draw
-
-        //Spell VS Spell --> Elements have an effect
-        // 1 win
+        // change should be by unmodified min value of 5
         [Test]
-        public void WaterS_v_FireS()
+        public void NoEloDifference()
         {
             //Setup
             CardTypes.Card card1 = new CardTypes.Spell("1", "WaterSpell", 100);

@@ -10,7 +10,6 @@ namespace MTCG.MTCG.BLL
 {
     public interface IPackageManager
     {
-        //public IEnumerable<Package> ShowPackages();
         Package AddPackage(List<Card> packContent);
         Package BuyPackage(string username);
     }

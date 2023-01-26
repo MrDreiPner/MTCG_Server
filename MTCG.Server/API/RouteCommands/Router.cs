@@ -11,6 +11,7 @@ using MTCG.API.RouteCommands.Packages;
 using MTCG.API.RouteCommands.Cards;
 using MTCG.API.RouteCommands.Battles;
 using MTCG.BattleClasses;
+using MTCG.API.RouteCommands.Trades;
 
 namespace MTCG.MTCG.API.RouteCommands
 {
@@ -24,17 +25,19 @@ namespace MTCG.MTCG.API.RouteCommands
         private readonly IPackageManager _packageManager;
         private readonly ICardManager _cardManager;
         private readonly IBattleManager _battleManager;
+        private readonly ITradeManager _tradeManager;
         private readonly IdentityProvider _identityProvider;
         private readonly IRouteParser _routeParser = new IdRouteParser();
         private List<BattleLobby> _battleLobbies;
-        public Router(IUserManager userManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, List<BattleLobby> battleLobbies)
+        public Router(IUserManager userManager, IPackageManager packageManager, ICardManager cardManager, IBattleManager battleManager, ITradeManager TradeManager, List<BattleLobby> battleLobbies)
         {
             _userManager = userManager;
             _packageManager = packageManager;
             _cardManager = cardManager;
             _battleManager = battleManager;
-            _battleLobbies = battleLobbies;
+            _tradeManager = TradeManager;
 
+            _battleLobbies = battleLobbies;
             // better: define IIdentityProvider interface and get concrete implementation passed in as dependency
             _identityProvider = new IdentityProvider(userManager);
         }
@@ -43,8 +46,10 @@ namespace MTCG.MTCG.API.RouteCommands
         {
             var identity = (RequestContext request) => _identityProvider.GetIdentityForRequest(request) ?? throw new RouteNotAuthenticatedException();
             var IsUsersMatch = (string path) => _routeParser.IsUsersMatch(path, "/users/{username}");
-            var parseId = (string path) => int.Parse(_routeParser.ParseParameters(path, "/messages/{id}")["id"]);
             var parseUsername = (string path) => _routeParser.ParseUsernameParameters(path, "/users/{username}")["username"];
+            var IsIdMatch = (string path) => _routeParser.IsIdMatch(path, "/tradings/{id}");
+            var parseId = (string path) => _routeParser.ParseParameters(path, "/tradings/{id}")["id"];
+
 
 
             IRouteCommand? command = request switch
@@ -69,6 +74,14 @@ namespace MTCG.MTCG.API.RouteCommands
                 { Method: HttpMethod.Get, ResourcePath: "/stats" } => new ShowUserStatsCommand(_battleManager, identity(request)),
                 { Method: HttpMethod.Get, ResourcePath: "/score" } => new ShowScoreboardCommand(_battleManager, identity(request)),
                 { Method: HttpMethod.Post, ResourcePath: "/battles" } => new StartBattleCommand(_battleManager, identity(request), _battleLobbies),
+
+                //Trade management
+                { Method: HttpMethod.Post, ResourcePath: "/tradings" } => new CreateTradeDealCommand(_tradeManager, identity(request), Deserialize<TradeDeal>(request.Payload)),
+                { Method: HttpMethod.Get, ResourcePath: "/tradings" } => new FetchTradeDealsCommand(_tradeManager, identity(request)),
+                { Method: HttpMethod.Post, ResourcePath: var path }  when IsIdMatch(path) => new CarryOutTradeCommand(_tradeManager, identity(request), Deserialize<List<string>>(request.Payload), parseId(path)),
+                { Method: HttpMethod.Delete, ResourcePath: var path } when IsIdMatch(path) => new DeleteTradeDealCommand(_tradeManager, identity(request), parseId(path)),
+
+
 
                 _ => null
             };

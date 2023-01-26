@@ -59,11 +59,6 @@ namespace MTCG.API.RouteCommands.Packages
                 {
                     Package newPackage = _packageManager.AddPackage(_cards);
                     response.StatusCode = StatusCode.Ok;
-                    /*foreach(Card card in newPackage._cards)
-                    {
-
-                    }*/
-                    
                 }
                 else
                 {
