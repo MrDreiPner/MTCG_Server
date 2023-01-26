@@ -8,14 +8,10 @@
           "System.Diagnostics.EventLog": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Castle.Core.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Castle.Core.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Castle.Core.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Castle.Core.dll": {}
         }
       },
       "coverlet.collector/3.1.2": {
@@ -40,14 +36,10 @@
       "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -193,9 +185,7 @@
           "lib/netcoreapp2.1/Microsoft.TestPlatform.Utilities.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.Common.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll": {},
-          "lib/netcoreapp2.1/testhost.dll": {
-            "related": ".deps.json"
-          }
+          "lib/netcoreapp2.1/testhost.dll": {}
         },
         "runtime": {
           "lib/netcoreapp2.1/Microsoft.TestPlatform.CommunicationUtilities.dll": {},
@@ -205,9 +195,7 @@
           "lib/netcoreapp2.1/Microsoft.TestPlatform.Utilities.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.Common.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll": {},
-          "lib/netcoreapp2.1/testhost.dll": {
-            "related": ".deps.json"
-          }
+          "lib/netcoreapp2.1/testhost.dll": {}
         },
         "resource": {
           "lib/netcoreapp2.1/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll": {
@@ -338,14 +326,10 @@
           "Castle.Core": "5.1.1"
         },
         "compile": {
-          "lib/net6.0/Moq.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Moq.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Moq.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Moq.dll": {}
         }
       },
       "NETStandard.Library/2.0.0": {
@@ -366,14 +350,10 @@
       "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         }
       },
       "Npgsql/7.0.1": {
@@ -383,27 +363,19 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Npgsql.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Npgsql.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Npgsql.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Npgsql.dll": {}
         }
       },
       "NuGet.Frameworks/5.11.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/NuGet.Frameworks.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/NuGet.Frameworks.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/NuGet.Frameworks.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/NuGet.Frameworks.dll": {}
         }
       },
       "NUnit/3.13.3": {
@@ -412,14 +384,10 @@
           "NETStandard.Library": "2.0.0"
         },
         "compile": {
-          "lib/netstandard2.0/nunit.framework.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/nunit.framework.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/nunit.framework.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/nunit.framework.dll": {}
         },
         "build": {
           "build/NUnit.props": {}
@@ -437,14 +405,10 @@
       "System.Diagnostics.EventLog/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Diagnostics.EventLog.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Diagnostics.EventLog.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -463,27 +427,19 @@
       "System.Reflection.Metadata/1.6.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/System.Reflection.Metadata.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reflection.Metadata.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {}
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -1607,24 +1563,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matus\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\porub\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Test\\MTCG.Test.csproj",
+      "projectUniqueName": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Test\\MTCG.Test.csproj",
       "projectName": "MTCG.Test",
-      "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Test\\MTCG.Test.csproj",
-      "packagesPath": "C:\\Users\\Matus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Test\\obj\\",
+      "projectPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Test\\MTCG.Test.csproj",
+      "packagesPath": "C:\\Users\\porub\\.nuget\\packages\\",
+      "outputPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Test\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Matus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\porub\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1638,11 +1589,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj": {
-              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj"
+            "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj": {
+              "projectPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj"
             },
-            "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Server\\MTCG.Server.csproj": {
-              "projectPath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Server\\MTCG.Server.csproj"
+            "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\MTCG.Server.csproj": {
+              "projectPath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Server\\MTCG.Server.csproj"
             }
           }
         }
@@ -1688,8 +1639,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -1698,7 +1648,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

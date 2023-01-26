@@ -21,16 +21,13 @@ namespace MTCG.API.RouteCommands.Trades
         private readonly string _cardID;
         private readonly int _checkArgs;
 
-        public CarryOutTradeCommand(ITradeManager tradeManager, User identity, List<string> cardID, string tradeID) : base(identity)
+        public CarryOutTradeCommand(ITradeManager tradeManager, User identity, string cardID, string tradeID) : base(identity)
         {
             if (Identity.Username != null)
             {
-                List<string> cards = new List<string>();
-                cards = cardID;
-                _checkArgs= cards.Count;
                 _tradeManager = tradeManager;
                 _tradeID = tradeID;
-                _cardID = cards[0];
+                _cardID = cardID;
             }
         }
 
@@ -39,13 +36,8 @@ namespace MTCG.API.RouteCommands.Trades
             var response = new Response();
             try
             {
-                if (_checkArgs == 1)
-                {
-                    _tradeManager.Trade(_tradeID, _cardID, Identity.Username);
-                    response.StatusCode = StatusCode.Ok;
-                }
-                else
-                    throw new TooFewArgumentsException();
+                _tradeManager.Trade(_tradeID, _cardID, Identity.Username);
+                response.StatusCode = StatusCode.Ok;
             }
             catch (Exception ex)
             {

@@ -78,7 +78,7 @@ namespace MTCG.MTCG.API.RouteCommands
                 //Trade management
                 { Method: HttpMethod.Post, ResourcePath: "/tradings" } => new CreateTradeDealCommand(_tradeManager, identity(request), Deserialize<TradeDeal>(request.Payload)),
                 { Method: HttpMethod.Get, ResourcePath: "/tradings" } => new FetchTradeDealsCommand(_tradeManager, identity(request)),
-                { Method: HttpMethod.Post, ResourcePath: var path }  when IsIdMatch(path) => new CarryOutTradeCommand(_tradeManager, identity(request), Deserialize<List<string>>(request.Payload), parseId(path)),
+                { Method: HttpMethod.Post, ResourcePath: var path }  when IsIdMatch(path) => new CarryOutTradeCommand(_tradeManager, identity(request), Deserialize<string>(request.Payload), parseId(path)),
                 { Method: HttpMethod.Delete, ResourcePath: var path } when IsIdMatch(path) => new DeleteTradeDealCommand(_tradeManager, identity(request), parseId(path)),
 
 

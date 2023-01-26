@@ -15,7 +15,7 @@ namespace MTCG.MTCG.DAL
 CREATE TABLE IF NOT EXISTS users (username varchar PRIMARY KEY, password varchar, bio varchar, image varchar, name varchar , coins numeric, elo numeric, wins numeric, losses numeric);
 CREATE TABLE IF NOT EXISTS cards (cid varchar PRIMARY KEY, cardname varchar, elementID element_id, dmg numeric, inDeck boolean, inTrade boolean, ownerID varchar, packID numeric, type varchar, CONSTRAINT owner_ID FOREIGN KEY(ownerID) REFERENCES users(username));
 CREATE TABLE IF NOT EXISTS package (pid serial PRIMARY KEY);
-CREATE TABLE IF NOT EXISTS trades (tradeid varchar PRIMARY KEY, cid varchar UNIQUE, type varchar, minDmg numeric);
+CREATE TABLE IF NOT EXISTS trades (tradeid varchar PRIMARY KEY, cid varchar UNIQUE, type varchar, minDmg numeric, creator varchar);
 ";
         //CREATE TYPE element_id AS ENUM ('water', 'fire', 'normal');
 

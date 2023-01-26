@@ -130,10 +130,10 @@ namespace MTCG.BattleClasses
             battleResults = new BattleResults(_battleLog, player1.Elo, player1.Wins, player1.Losses, player2.Elo, player2.Wins, player2.Losses);
             lobbyDone = true;
         }
-        private void CaclulateNewELO(int winner)
+        public void CaclulateNewELO(int winner)
         {
 
-            double diff = Math.Abs((double)player1.Elo - (double)player2.Elo)/100;
+            double diff = Math.Abs(((double)player1.Elo - (double)player2.Elo)/100);
             if (diff < 0.5)
                 diff = 0.5;
             else if (diff > 5 )
@@ -144,13 +144,19 @@ namespace MTCG.BattleClasses
                 if (player1.Elo > player2.Elo)
                 {
                     player1.Elo = player1.Elo + (int)points / 2;
-                    player2.Elo = player2.Elo - (int)points / 2;
+                    if ((int)points / 2 > 10)
+                        points = 10;
+                    else
+                        points = (int)points / 2;
+                    player2.Elo = player2.Elo - (int) points;
                 }
                 else
                 {
                     player1.Elo = player1.Elo + (int)points;
                     player2.Elo = player2.Elo - (int)points;
                 }
+                if(player2.Elo < 0)
+                    player2.Elo = 0;
                 player1.Wins++;
                 player2.Losses++;
             }
@@ -159,13 +165,19 @@ namespace MTCG.BattleClasses
                 if(player1.Elo < player2.Elo)
                 {
                     player2.Elo = player2.Elo + (int)points / 2;
-                    player1.Elo = player1.Elo - (int)points / 2;
+                    if((int) points / 2 > 10)
+                        points = 10;
+                    else
+                        points = (int)points / 2;
+                    player2.Elo = player2.Elo - (int)points;
                 }
                 else
                 {
                     player2.Elo = player2.Elo + (int)points;
                     player1.Elo = player1.Elo - (int)points;
                 }
+                if (player1.Elo < 0)
+                    player1.Elo = 0;
                 player2.Wins++;
                 player1.Losses++;
             }

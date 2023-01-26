@@ -1,0 +1,7 @@
+DB Setup/ Curl Script additions/ Scaling Elo in README.txt
+
+Testing Focus was set on Elo Calculations, Battle Logic and Card/Deck Creation.
+Elo Calculation: This is the case due to the nature of the elo calculations running into edge cases with min/max boundaries
+Battle Logic: Interactions between Types and Elements
+Card Deck Creation: Reading out Elements and assigning pre-determined elements
+

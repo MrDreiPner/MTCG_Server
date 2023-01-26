@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wGoB7oDJs/nBz77bZDuMaTqn2kZzEx1icgHaq1u0J9YmnljXXtHNGdrs4kJD01joTRNpKITYQ3nVlhMnHoJU7A==",
+  "dgSpecHash": "FRWYXsBIkpET1TmGgGebTDf80br9E/VkQ8bph6pzoQfYB+L4pLebyRg6kYR4MLMGph4cao/nvy9kgt/Zf/aCIw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matus\\Documents\\GitHub\\MTCG_Project\\MTCG.Core\\MTCG.Core.csproj",
+  "projectFilePath": "C:\\Dokument Folder\\VS Projects\\MTCG_Server\\MTCG.Core\\MTCG.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,10 +13,13 @@ namespace MTCG.MTCG.DAL
 {
     public class DatabaseTradeDao : DatabaseBaseDao, ITradeDao
     {
-        private const string CheckIfTradeableCommand = "SELECT * FROM cards WHERE ownerid = @username";
-        private const string GetUserDeckCommand = "SELECT * FROM cards WHERE ownerid = @username AND inDeck = true";
-        private const string CheckOwnerCommand = "SELECT * FROM cards WHERE ownerid = @username AND inTrade = false AND cid = @cid";
-        private const string ClearDeckCommand = "UPDATE cards SET inDeck = false WHERE ownerid = @username AND inDeck = true";
+        private const string CheckIfTradeableCommand = "SELECT * FROM cards WHERE ownerid = @username AND cid = @cid AND inDeck = false";
+        private const string CheckIfTradeExistsCommand = "SELECT * FROM trades WHERE tradeid = @tradeid";
+        private const string InsertTradeDealCommand = @"
+INSERT INTO trades(tradeid, cid, type, mindmg, creator) VALUES (@tradeid, @cid, @type, @mindmg, @username);
+UPDATE cards SET inTrade = true WHERE cid = @cid;
+";
+        private const string GetAllTradeDealsCommand = "SELECT * FROM trades";
         private const string UpdateDeckCommand = "UPDATE cards SET inDeck = true WHERE cid = @cid";
         public DatabaseTradeDao(string connectionString) : base(connectionString)
         {
@@ -31,60 +34,60 @@ namespace MTCG.MTCG.DAL
         }
         public void CreateTrade(TradeDeal tradeDeal, string username)
         {
-           /* ExecuteWithDbConnection((connection) =>
+           ExecuteWithDbConnection((connection) =>
             {
                 using var cmd = new NpgsqlCommand(CheckIfTradeableCommand, connection);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("cid", tradeDeal.CardToTrade);
                 var result = cmd.ExecuteReader();
-                if (result.Read())
+                if (!result.Read())
                 {
-                    packID = Convert.ToInt32(result["pid"]);
+                    throw new WrongCardOwnerException();
                 }
                 return 0;
             });
             ExecuteWithDbConnection((connection) =>
             {
-                Package? package = null;
-                try
+                using var cmd = new NpgsqlCommand(CheckIfTradeExistsCommand, connection);
+                cmd.Parameters.AddWithValue("tradeid", tradeDeal.Id);
+                var result = cmd.ExecuteReader();
+                if (result.Read())
                 {
-                    foreach (Card card in packContent)
-                    {
-                        //Console.WriteLine("Adding Card : " + card.Name + " ID: " + card.GuID + " Damage: " + card.Dmg + " Type: " + card.Type + " Element: " + card.ElementID);
-                        using var newcmd = new NpgsqlCommand(InsertCardCommand, connection);
-                        newcmd.Parameters.AddWithValue("cid", card.GuID);
-                        newcmd.Parameters.AddWithValue("cardname", card.Name);
-                        newcmd.Parameters.AddWithValue("elementid", card.ElementID);
-                        newcmd.Parameters.AddWithValue("dmg", card.Dmg);
-                        newcmd.Parameters.AddWithValue("packid", packID);
-                        newcmd.Parameters.AddWithValue("type", card.Type);
-                        //cmd.Prepare();
-                        int affectedRows = newcmd.ExecuteNonQuery();
-                        //cmd.Dispose();
-
-                    }
-                }
-                catch (PostgresException)
-                {
-                    ExecuteWithDbConnection((connection) =>
-                    {
-                        //Console.WriteLine("We are deleting the Package");
-                        using var cmd = new NpgsqlCommand(DeleteFaultyPackageCommand, connection);
-                        cmd.Parameters.AddWithValue("pid", packID);
-                        var result = cmd.ExecuteNonQuery(); ;
-                        //cmd.Dispose();
-                        return 0;
-                    });
                     throw new CardAlreadyExistsException();
                 }
-
-
-                package = new Package(packContent, packID);
-                return package;
-            });*/
+                return 0;
+            });
+            ExecuteWithDbConnection((connection) =>
+            {
+                using var cmd = new NpgsqlCommand(InsertTradeDealCommand, connection);
+                cmd.Parameters.AddWithValue("tradeid", tradeDeal.Id);
+                cmd.Parameters.AddWithValue("cid", tradeDeal.CardToTrade);
+                cmd.Parameters.AddWithValue("type", tradeDeal.Type);
+                cmd.Parameters.AddWithValue("mindmg", tradeDeal.MinimumDamage);
+                cmd.Parameters.AddWithValue("username", username);
+                var result = cmd.ExecuteNonQuery();
+                return 0;
+            });
         }
+
         public List<TradeDeal> GetTradeDeals()
         {
             List<TradeDeal> newDeals = new List<TradeDeal>();
-            return newDeals;
+            return ExecuteWithDbConnection((connection) =>
+            {
+                using var cmd = new NpgsqlCommand(GetAllTradeDealsCommand, connection);
+                var result = cmd.ExecuteReader();
+                int counter = 0;
+                while (result.Read())
+                {
+                    
+                }
+                if (counter == 0)
+                {
+                    throw new MessageNotFoundException();
+                }
+                return newDeals;
+            });
         }
         public void DeleteTrade(string tradeID, string username)
         {

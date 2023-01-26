@@ -215,9 +215,6 @@ ping localhost -n 10 >NUL 2>NUL
 start /b "kienboec battle" curl -X POST http://localhost:10001/battles --header "Authorization: Bearer kienboec-mtcgToken"
 start /b "altenhof battle" curl -X POST http://localhost:10001/battles --header "Authorization: Bearer altenhof-mtcgToken"
 ping localhost -n 10 >NUL 2>NUL
-start /b "kienboec battle" curl -X POST http://localhost:10001/battles --header "Authorization: Bearer kienboec-mtcgToken"
-start /b "altenhof battle" curl -X POST http://localhost:10001/battles --header "Authorization: Bearer altenhof-mtcgToken"
-ping localhost -n 10 >NUL 2>NUL
 
 REM --------------------------------------------------
 echo 18) Stats 
@@ -234,6 +231,16 @@ echo 19) scoreboard
 curl -X GET http://localhost:10001/score --header "Authorization: Bearer kienboec-mtcgToken"
 echo.
 echo.
+
+REM --------------------------------------------------
+echo OWN TEST) Try to fight without Deck (should fail)
+start /b "admin battle" curl -X POST http://localhost:10001/battles --header "Authorization: Bearer admin-mtcgToken"
+echo.
+echo add strangers card to own Deck (should fail)
+curl -X PUT http://localhost:10001/deck --header "Content-Type: application/json" --header "Authorization: Bearer kienboec-mtcgToken" -d "[\"aa9999a0-734c-49c6-8f4a-651864b14e62\", \"99f8f8dc-e25e-4a95-aa2c-782823f36e2a\", \"e85e3976-7c86-4d06-9a80-641c2019a79f\", \"171f6076-4eb5-4a7d-b3f2-2d650cc3d237\"]"
+
+
+
 
 REM --------------------------------------------------
 echo 20) trade
