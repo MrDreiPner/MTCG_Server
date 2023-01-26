@@ -24,7 +24,6 @@ namespace MTCG.CardTypes
         }
         ~Spell() 
         { 
-            Console.WriteLine("Spell destructor has been called"); 
         }
     }
 }

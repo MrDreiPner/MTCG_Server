@@ -1,0 +1,11 @@
+DB Setup/ Curl Script additions/ Scaling Elo in README.txt
+
+Lessons learned:
+I have definitely learned (too late) that writting tests is really useful, since it really helped me to find kinks in my Elo calculations 
+and made me engage with it on a more thorough basis. I also learned that proper structuring can speed up work considerably after some initial 
+time investement and that it is well worth it in the long run, since it was easier than usual to track down problematic sections even a month after 
+writting them.
+What I value most by far is the feeling of writting purposeful queries.
+The stateless nature of the MTCG Server was new territory for me, so I had to learn a lot about receiving and processing incomming payloads and 
+how to package a response properly, covering multiple possible exceptions and context sensitive responses.
+

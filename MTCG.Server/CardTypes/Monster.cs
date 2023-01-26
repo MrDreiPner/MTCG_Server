@@ -31,7 +31,6 @@ namespace MTCG.CardTypes
         }
         ~Monster() 
         { 
-            Console.WriteLine("Monster destructor has been called"); 
         }
     }
 }
